@@ -102,14 +102,14 @@ $color:#0d1b92;
     height: 15vh;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 780px) {
     .logo-col{
         display: none;
     }
     .nav-bar{
         height:10vh;
         position: fixed;
-        bottom: 10px;
+        top: 85%;
     }
     .link{
         background-color: white;
