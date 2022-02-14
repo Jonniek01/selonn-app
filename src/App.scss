@@ -1,0 +1,17 @@
+$color:#0d1b92;
+
+.App{
+    color: $color;
+    margin: 0;
+
+}
+.navcover{
+    height: 17vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .navcover{
+        display: none;
+    }
+    
+}

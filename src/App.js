@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {Container} from 'react-bootstrap'
+import NavigationBar from './components/NavigationBar';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import ShopFeed from './Pages/ShopFeed';
+import About from './Pages/About';
+import Profile from './Pages/Profile';
+import NotFound from './Pages/NotFound';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App" fluid>    
+      <BrowserRouter >
+      <NavigationBar/>
+      <div className='navcover'></div>
+
+
+
+    <Routes>
+    <Route path='/' element={<ShopFeed/>} exact/>
+    <Route path='/profile' element={<Profile/>} exact/>
+    <Route path='/about' element={<About/>} exact/>
+
+
+
+    <Route path="*" element={<NotFound/>} exact/>
+
+
+
+
+    </Routes>
+    </BrowserRouter>
+
+    </Container>
   );
 }
 
