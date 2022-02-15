@@ -4,15 +4,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:36.23,
+        latitudeFixed:7.288,
         googleMap:'',
-        locationName:''
+        locationName:'Naivasha'
 
 
 
@@ -22,15 +22,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.22,
+        latitudeFixed:8.22,
         googleMap:'',
-        locationName:''
+        locationName:'Kimathi'
 
 
 
@@ -40,15 +40,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:27.22,
+        latitudeFixed:-7.82,
         googleMap:'',
-        locationName:''
+        locationName:'Nakuru'
 
 
 
@@ -58,15 +58,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.82,
+        latitudeFixed:-6.332,
         googleMap:'',
-        locationName:''
+        locationName:'Nairobi'
 
 
 
@@ -76,15 +76,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.223,
+        latitudeFixed:7.72,
         googleMap:'',
-        locationName:''
+        locationName:'Moro'
 
 
 
@@ -94,15 +94,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.22,
+        latitudeFixed:4.72,
         googleMap:'',
-        locationName:''
+        locationName:'Nanyuki'
 
 
 
@@ -112,15 +112,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.22,
+        latitudeFixed:4.22,
         googleMap:'',
-        locationName:''
+        locationName:'Nyeri'
 
 
 
@@ -130,15 +130,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:47.22,
+        latitudeFixed:-7.22,
         googleMap:'',
-        locationName:''
+        locationName:'Kisumu'
 
 
 
@@ -148,15 +148,15 @@ export const Sellers=[
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
 
-        longitudeCurrent:'',
-        latitudeCurrent:'',
+        longitudeCurrent:null,
+        latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
         photoUrl:'',
-        longitudeFixed:'',
-        latitudeFixed:'',
+        longitudeFixed:37.22,
+        latitudeFixed:7.22,
         googleMap:'',
-        locationName:''
+        locationName:'Nairobi'
 
 
 

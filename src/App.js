@@ -14,6 +14,11 @@ function App() {
       <BrowserRouter >
       <NavigationBar/>
       <div className='navcover'></div>
+      <div className='mobilecover'></div>
+      <div className='searchcover'></div>
+
+
+      <div className='mobile-head'><p>selonn</p></div>
 
 
 
@@ -31,6 +36,9 @@ function App() {
 
     </Routes>
     </BrowserRouter>
+
+    <div className='navmobilecover'></div>
+
 
     </Container>
   );

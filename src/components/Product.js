@@ -1,16 +1,17 @@
 import React from 'react'
 import { products } from '../data/Products'
+import '../sass/Product.scss'
 
 function Product() {
   return (
-    <div>
-        <div>
-            <span>ProductName</span>
-            <span>Image</span>
+    <div className='product-card'>
+        <div className='name-image'>
+            <div>ProductName</div>
+            <div>Image</div>
         </div>
-        <div>
-            <span>Price</span>
-            <span>Available</span>
+        <div className='price-availaple'>
+            <div className='price'><p>Ksh.252.00</p></div>
+            <div className='available'><p>Available</p></div>
         </div>
     </div>
   )
