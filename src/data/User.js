@@ -1,5 +1,4 @@
-export let User=[
-    {
+export const User= {
         useId:1,
         userName:'',
         longitudeCurrent:'',
@@ -7,17 +6,15 @@ export let User=[
         firstName:'John',
         secondName:'Done',
         photoUrl:'',
-        googleMap:'',
-        userId:4,
         brand:'Ehub Enterprises',
         description:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
         longitudeFixed:'',
         latitudeFixed:'',
         googleMap:'',
-        locationName:''
+        locationName:'',
+        isSeller:true
 
 
 
     }
 
-]

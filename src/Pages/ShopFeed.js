@@ -50,6 +50,8 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
       
 
       </div>
+      <div className='searchcover'></div>
+
       <div className='feed-div'>
 
       <div className='feed-container'>
