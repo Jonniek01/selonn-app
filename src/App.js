@@ -25,7 +25,7 @@ function App() {
 
     <Routes>
     <Route path='/' element={<ShopFeed/>} exact/>
-    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.useId}/>:<MyProfileBuyer userId={User.useId}/>} />
+    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.userId}/>:<MyProfileBuyer userId={User.userId}/>} />
 
 
     <Route path='/about' element={<About/>} exact/>
