@@ -5,14 +5,6 @@ import { Sellers } from '../data/Sellers'
 import { Products } from '../data/Products'
 import Product from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-<<<<<<< HEAD
-
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import '../sass/shopFeed.scss'
-
-
-function ShopFeed() {
-=======
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -45,212 +37,12 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
    
    </div>)
 });
->>>>>>> 5ed355d8f8febfab5e840761f6e9ccbfd063dbd9
   return (
     <>
     <Container>
       <div className='search-container'>
       <div className='search'>
       <FontAwesomeIcon className='search-icon'  icon={faSearch}  />
-<<<<<<< HEAD
-      <input className='search-input' type="text"></input>
-
-        
-      </div>
-
-
-      </div>
-
-      <div className='feed-card'>
-
-        <div>
-          <div>
-          <span>Brand</span><span>Distance:</span><span>location Name</span>
-          </div>
-        <Product/>
-        </div>
-      </div>
-      <div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-<div className='feed-card'>
-
-<div>
-  <div>
-  <span>Brand</span><span>Distance:</span><span>location Name</span>
-  </div>
-<Product/>
-</div>
-</div>
-=======
       <input className='search-input' placeholder='Search...' type="text"></input>
 
         
@@ -272,7 +64,6 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
 
 
       
->>>>>>> 5ed355d8f8febfab5e840761f6e9ccbfd063dbd9
 
     </Container>
     
