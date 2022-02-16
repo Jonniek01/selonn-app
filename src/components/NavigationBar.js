@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop } from '@fortawesome/free-solid-svg-icons'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 import profileImage from '../Images/me.jpg'
+import { User } from '../data/User'
 
 
 

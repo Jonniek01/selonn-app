@@ -4,8 +4,10 @@ import NavigationBar from './components/NavigationBar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import ShopFeed from './Pages/ShopFeed';
 import About from './Pages/About';
-import Profile from './Pages/Profile';
 import NotFound from './Pages/NotFound';
+import { User } from './data/User';
+import MyProfileSeller from './Pages/MyProfileSeller';
+import MyProfileBuyer from './Pages/MyProfileBuyer';
 
 
 function App() {
@@ -14,12 +16,18 @@ function App() {
       <BrowserRouter >
       <NavigationBar/>
       <div className='navcover'></div>
+      <div className='mobilecover'></div>
+
+
+      <div className='mobile-head'><p>selonn</p></div>
 
 
 
     <Routes>
     <Route path='/' element={<ShopFeed/>} exact/>
-    <Route path='/profile' element={<Profile/>} exact/>
+    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.useId}/>:<MyProfileBuyer userId={User.useId}/>} />
+
+
     <Route path='/about' element={<About/>} exact/>
 
 
@@ -31,6 +39,9 @@ function App() {
 
     </Routes>
     </BrowserRouter>
+
+    <div className='navmobilecover'></div>
+
 
     </Container>
   );

@@ -2,7 +2,11 @@ $color:#0d1b92;
 .nav-bar{
     height:10vh;
     position: fixed;
+    z-index: 999;
     
+}
+.nav-bar-row{
+    background-color: white;
 }
 
 .logo-col{
