@@ -51,7 +51,7 @@ export let Products=[
     },
     {
         userId:2,
-        productId:5,
+        productId:6,
         category:'',
         productName:'Ruler',
         price:115.50,
@@ -61,7 +61,7 @@ export let Products=[
     },
     {
         userId:2,
-        productId:6,
+        productId:7,
         category:'',
         productName:'charger',
         price:115.50,
@@ -71,7 +71,7 @@ export let Products=[
     },
     {
         userId:3,
-        productId:7,
+        productId:8,
         category:'',
         productName:'rice',
         price:115.50,
