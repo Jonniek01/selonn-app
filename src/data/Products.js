@@ -1,11 +1,11 @@
 export let Products=[
     {
-        userId:1,
+        userId:2,
         productId:1,
         category:'',
         productName:'latop',
         price:115.50,
-        available:false,
+        available:true,
         productImageUrl:'',
         productDescription:''
     },
@@ -15,7 +15,7 @@ export let Products=[
         category:'',
         productName:'tomato',
         price:115.50,
-        available:false,
+        available:true,
         productImageUrl:'',
         productDescription:''
     },
@@ -45,7 +45,7 @@ export let Products=[
         category:'',
         productName:'Phone',
         price:115.50,
-        available:false,
+        available:true,
         productImageUrl:'',
         productDescription:''
     },
@@ -65,7 +65,7 @@ export let Products=[
         category:'',
         productName:'charger',
         price:115.50,
-        available:false,
+        available:true,
         productImageUrl:'',
         productDescription:''
     },

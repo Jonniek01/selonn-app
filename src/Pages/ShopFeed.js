@@ -2,8 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import { User } from '../data/User'
 import { Sellers } from '../data/Sellers'
-import { Products } from '../data/Products'
-import Product from '../components/Product'
+import {Producthome,productprofile} from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 
@@ -31,7 +30,7 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
    </div>
 
 
-   <Product userId={seller.userId}/>
+   <Producthome userId={seller.userId}/>
 
    
    
@@ -55,6 +54,7 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
       <div className='feed-div'>
 
       <div className='feed-container'>
+        
       {FeedCard}
 
 

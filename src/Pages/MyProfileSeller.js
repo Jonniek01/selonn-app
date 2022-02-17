@@ -8,12 +8,30 @@ import { Products } from '../data/Products'
 import { useState } from 'react'
 
 
-function MyProfileSeller() {
+function MyProfileSeller({userId,clat,clong}) {
   const [products,setProducts]=useState(Products)
-  const [user,setUser]=useState(User)
-  const userId=user.userId;
   const product=products.filter(product=>product.userId===userId).map((product)=>{
-    return<div key={product.productId}>{product.productName}</div>
+    return<div key={product.productId}>
+          <div className='product-card-seller'>
+        <div className='name-image'>
+            <div className='product-name'>{product.productName}</div>
+            <div className='product-image'>Image</div>
+        </div>
+        <div className='price-available'>
+            <div className='price'><p>{product.price} Ksh</p></div>
+            <span>
+            <button className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</button>
+            <button className='b-edit'>Edit Product</button>
+
+
+            </span>
+            
+        </div>
+    </div>
+
+      
+      
+      </div>
   }
 
   )
@@ -25,6 +43,8 @@ function MyProfileSeller() {
         <div className='contents'>
           <div className='s-brand'><h1>Brand</h1></div>
           <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>LocationName<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
+          <span>userId:{userId}</span><span>lat:{clat}</span><span>long:{clong}</span>
+
           <p className='description'>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convallis sem, quis egestas ante lacinia sed. Nunc luctus dui in arcu semper, vel mattis libero varius. Donec at ligula massa. Praesent convallis et justo et fringilla
 </p>
