@@ -6,6 +6,8 @@ import { Container,Form ,Button} from 'react-bootstrap'
 function LogIn() {
   return (
     <Container className='logIn'>
+
+      <h3>LOG IN</h3>
       <Form className='login-form'>
   <Form.Group className="mb-3 " controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
@@ -19,14 +21,15 @@ function LogIn() {
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" />
   </Form.Group>
-  <Button variant="primary" type="submit">
+  <Button variant="primary" type="submit" onClick={(e)=>{
+    e.preventDefault()
+  }}>
     Submit
   </Button>
 </Form>
 
 <div>
-  <h3>Or</h3>
-  <button>Log In With Google</button>
+    <button>Log In With Google</button>
 </div>
         
 
