@@ -1,50 +1,37 @@
-import './App.scss';
-import {Container} from 'react-bootstrap'
-import NavigationBar from './components/NavigationBar';
+import React from 'react'
+import Page from './Page'
+import LogIn from './LogIn'
+import CreateAccount from './Pages/CreateAccount';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import ShopFeed from './Pages/ShopFeed';
-import About from './Pages/About';
-import NotFound from './Pages/NotFound';
-import { User } from './data/User';
-import MyProfileSeller from './Pages/MyProfileSeller';
-import MyProfileBuyer from './Pages/MyProfileBuyer';
-
-
+import { useState } from 'react';
 function App() {
-  return (
-    <Container className="App" fluid>    
-      <BrowserRouter >
-      <NavigationBar/>
-      <div className='navcover'></div>
-      <div className='mobilecover'></div>
+    const [loggedIn,SetLoggedIn]=useState(false)
+    if (loggedIn===true){
+        return (
+            <div><Page /></div>
+          )
+        
 
-
-      <div className='mobile-head'><p>selonn</p></div>
-
-
-
-    <Routes>
-    <Route path='/' element={<ShopFeed/>} exact/>
-    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.userId}/>:<MyProfileBuyer userId={User.userId}/>} />
-
-
-    <Route path='/about' element={<About/>} exact/>
+    }
+    else{
+        return(
+            <div>
+                <BrowserRouter>
+                <Routes>
+                <Route path='/' element={<LogIn/>} exact/>
+                <Route path='/createAccount' element={<CreateAccount/>} exact/>
 
 
 
-    <Route path="*" element={<NotFound/>} exact/>
+                </Routes>
+                </BrowserRouter>
 
 
+            
+            </div>
 
-
-    </Routes>
-    </BrowserRouter>
-
-    <div className='navmobilecover'></div>
-
-
-    </Container>
-  );
+        )
+    }
 }
 
-export default App;
+export default App
