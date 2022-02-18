@@ -21,9 +21,7 @@ function LogIn() {
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" />
   </Form.Group>
-  <Button variant="primary" type="submit" onClick={(e)=>{
-    e.preventDefault()
-  }}>
+  <Button variant="primary" type="submit">
     Submit
   </Button>
 </Form>
@@ -35,7 +33,7 @@ function LogIn() {
 
 
 
-<Link  className='createAccount' to="/createAccount">
+<Link  className='' to="/createAccount">
     Create Account
     
 </Link>

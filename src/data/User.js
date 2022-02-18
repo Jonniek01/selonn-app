@@ -1,5 +1,5 @@
 export const User= {
-        userId:1,
+        userId:2,
         userName:'',
         longitudeCurrent:'',
         latitudeCurrent:'',
@@ -12,7 +12,7 @@ export const User= {
         latitudeFixed:'',
         googleMap:'',
         locationName:'',
-        isSeller:false
+        isSeller:true
 
 
 
