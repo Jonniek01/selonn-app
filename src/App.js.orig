@@ -1,0 +1,65 @@
+import './App.scss';
+import {Container} from 'react-bootstrap'
+import NavigationBar from './components/NavigationBar';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import ShopFeed from './Pages/ShopFeed';
+import About from './Pages/About';
+<<<<<<< HEAD
+import NotFound from './Pages/NotFound';
+import { User } from './data/User';
+import MyProfileSeller from './Pages/MyProfileSeller';
+import MyProfileBuyer from './Pages/MyProfileBuyer';
+=======
+import Profile from './Pages/Profile';
+import NotFound from './Pages/NotFound';
+>>>>>>> switching branches
+
+
+function App() {
+  return (
+    <Container className="App" fluid>    
+      <BrowserRouter >
+      <NavigationBar/>
+      <div className='navcover'></div>
+<<<<<<< HEAD
+      <div className='mobilecover'></div>
+
+
+      <div className='mobile-head'><p>selonn</p></div>
+=======
+>>>>>>> switching branches
+
+
+
+    <Routes>
+    <Route path='/' element={<ShopFeed/>} exact/>
+<<<<<<< HEAD
+    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.userId}/>:<MyProfileBuyer userId={User.userId}/>} />
+
+
+=======
+    <Route path='/profile' element={<Profile/>} exact/>
+>>>>>>> switching branches
+    <Route path='/about' element={<About/>} exact/>
+
+
+
+    <Route path="*" element={<NotFound/>} exact/>
+
+
+
+
+    </Routes>
+    </BrowserRouter>
+
+<<<<<<< HEAD
+    <div className='navmobilecover'></div>
+
+
+=======
+>>>>>>> switching branches
+    </Container>
+  );
+}
+
+export default App;
