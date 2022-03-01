@@ -1,11 +1,15 @@
 import React from 'react'
-import { Container,Modal,Button ,Form} from 'react-bootstrap'
+import { Container,Modal,Button } from 'react-bootstrap'
 import '../sass/MyProfileSeller.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
-import { User } from '../data/User'
 import { Products } from '../data/Products'
 import { useState } from 'react'
+import UpdateSellerForm from '../components/UpdateSellerForm'
+import UpdateProductForm from '../components/UpdateProductForm'
+import CreateProductForm from '../components/CreateProductForm'
+
+
 
 
 function MyProfileSeller({userId,clat,clong}) {
@@ -99,120 +103,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
         </Modal.Header>
         <Modal.Body>
 
-        <Form className='form'>
-            <div className='create-names'>
-
-
-          <Form.Group className="mb-3 " >
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type="text" placeholder="First Name" />
-          </Form.Group>
-            <Form.Group className="mb-3 " controlId="">
-          <Form.Label>Second Name</Form.Label>
-          <Form.Control type="text" placeholder="Second Name" />
-
-          </Form.Group>
-          </div>
-
-
-          
-        <div className='email-phone-text'>
-          <div className='email-phone'>
-
-          
-          <Form.Group className="mb-3 " >
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group className="mb-3 " >        <Modal.Footer>
-        </Modal.Footer>
-
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="tell" placeholder="+254" />
-          </Form.Group>
-          </div>
-
-          <Form.Text className="text-muted">
-          As just a buyer, We never share your contact information with anyone. As a seller, it is used by the buyers to contact you
-          </Form.Text>
-
-          </div>
-
-          <div className='brand-image'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>User Name </Form.Label>
-          <Form.Control type="email" placeholder="Enter User Name" />
-          </Form.Group>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Cover Photo </Form.Label>
-          <Form.Control type="file" placeholder="Upload C" />
-          </Form.Group>
-
-
-
-          </div>
-
-          <div className='more-seller' >
-            <div className='location-set-div'>
-            <Button className='set-location'>Set location</Button>
-            <p className='location-set'>Not set</p>
-
-
-            </div>
-
-          <div className='description'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Bussiness description </Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder="Your Bussiness Description" />
-          </Form.Group>
-
-
-
-          </div>
-         <div className='seller-check'>
-          {['checkbox'].map((type) => (
-              <div key={`default-${type}`} className="mb-3">
-
-                <Form.Check 
-                 label={'I am a seller'}
-
-                  type={type}
-                  id={`default-${type}`}
-                />
-
-                      </div>
-                    ))}
-          </div>
-
-          </div>
-
-
-
-          
-
-
-        <div className='passwords'>
-
-          <Form.Group className="mb-3 " >
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-
-          <Form.Group className="mb-3 " >
-
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          </div>
-
-
-          <Button variant="primary" type="submit" onClick={(e)=>{
-          e.preventDefault()
-          }}>
-          Update
-          </Button>
-          </Form>
-
+          <UpdateSellerForm/>
 
         </Modal.Body>
       </Modal>
@@ -224,47 +115,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
           <Modal.Title>Create Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form className='form-product'>
-            <div className='name-price'>
-
-
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product Name</Form.Label>
-          <Form.Control type="text" placeholder="Product Name" />
-          </Form.Group>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Price</Form.Label>
-          <Form.Control type="number" placeholder="Price" />
-          </Form.Group>
-
-          </div>
-          <div className='product-image'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product image </Form.Label>
-          <Form.Control type="file" placeholder="Upload Image" />
-          </Form.Group>
-
-
-
-          </div>
-          <div className='product-description'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product description </Form.Label>
-          <Form.Control as="textarea" rows={2} placeholder="Product Description" />
-          </Form.Group>
-
-
-
-          </div>
-
-          <Button variant="primary" type="submit" onClick={(e)=>{
-          e.preventDefault()
-          }}>
-          Create
-          </Button>
-
-
-          </Form>
+          <CreateProductForm/>
 
         </Modal.Body>
       </Modal>
@@ -276,53 +127,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
           <Modal.Title>Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form className='form-product'>
-            <div className='name-price'>
-
-
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product Name</Form.Label>
-          <Form.Control type="text" placeholder="Product Name" />
-          </Form.Group>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Price</Form.Label>
-          <Form.Control type="number" placeholder="Price" />
-          </Form.Group>
-
-          </div>
-          <div className='product-image'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product image </Form.Label>
-          <Form.Control type="file" placeholder="Upload Image" />
-          </Form.Group>
-
-
-
-          </div>
-          <div className='product-description'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Product description </Form.Label>
-          <Form.Control as="textarea" rows={2} placeholder="Product Description" />
-          </Form.Group>
-
-
-
-          </div>
-          <Button variant="primary" type="submit" onClick={(e)=>{
-          e.preventDefault()
-          }}>
-          Update
-          </Button>
-
-
-          </Form>
+          <UpdateProductForm/>
 
         </Modal.Body>
       </Modal>
       
-
-      
-
 
 
 </Container>  )

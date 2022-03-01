@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container,Modal,Button ,Form} from 'react-bootstrap'
+import { Container,Modal,Button } from 'react-bootstrap'
 import { useState } from 'react'
 
 
 import '../sass/MyProfileBuyer.scss'
+import UpdateBuyerForm from '../components/UpdateBuyerForm';
 
 function MyProfileBuyer({userId,clat,clong}) {
 
@@ -44,40 +45,7 @@ function MyProfileBuyer({userId,clat,clong}) {
           <Modal.Title>Update account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form className='buyer-update-form'>
-
-
-          
-          <div className='brand-image'>
-          <Form.Group className="mb-3 " >
-          <Form.Label>User Name </Form.Label>
-          <Form.Control type="email" placeholder="Enter User Name" />
-          </Form.Group>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Cover Photo </Form.Label>
-          <Form.Control type="file" placeholder="Upload C" />
-          </Form.Group>
-
-
-
-          </div>
-
-        <div className='passwords'>
-
-          <Form.Group className="mb-3 " >
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-
-          <Form.Group className="mb-3 " >
-
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          </div>
-
-
-          </Form>
+          <UpdateBuyerForm/>
 
         </Modal.Body>
         <Modal.Footer>
