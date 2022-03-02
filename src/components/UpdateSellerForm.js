@@ -3,21 +3,36 @@ import { Button ,Form} from 'react-bootstrap'
 
 
 export default class UpdateSellerForm extends Component {
+  constructor(props){
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+  
+// Form submitting logic, prevent default page refresh 
+handleSubmit(event){
+  event.preventDefault();
+  let fd = new FormData(event.target);
+  let data = Object.fromEntries(fd.entries());
+
+  
+  alert(JSON.stringify(data))
+}
   render() {
+    
     return (
       <>        
         
-        <Form className='form'>
+        <Form className='form' onSubmit={this.handleSubmit}>
       <div className='create-names'>
 
 
     <Form.Group className="mb-3 " >
     <Form.Label>First Name</Form.Label>
-    <Form.Control type="text" placeholder="First Name" />
+    <Form.Control name="firstName" type="text" placeholder="First Name" />
     </Form.Group>
       <Form.Group className="mb-3 " controlId="">
     <Form.Label>Second Name</Form.Label>
-    <Form.Control type="text" placeholder="Second Name" />
+    <Form.Control name="secondName" type="text" placeholder="Second Name" />
 
     </Form.Group>
     </div>
@@ -30,11 +45,11 @@ export default class UpdateSellerForm extends Component {
     
     <Form.Group className="mb-3 " >
     <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
+    <Form.Control name="email" type="email" placeholder="Enter email" />
     </Form.Group>
     <Form.Group className="mb-3 " >  
     <Form.Label>Phone Number</Form.Label>
-    <Form.Control type="tell" placeholder="+254" />
+    <Form.Control name="tell" type="tell" placeholder="+254" />
     </Form.Group>
     </div>
 
@@ -47,7 +62,7 @@ export default class UpdateSellerForm extends Component {
     <div className='brand-image'>
     <Form.Group className="mb-3 " >
     <Form.Label>User Name </Form.Label>
-    <Form.Control type="email" placeholder="Enter User Name" />
+    <Form.Control name="userName" type="text" placeholder="Enter User Name" />
     </Form.Group>
     <Form.Group className="mb-3 " >
     <Form.Label>Cover Photo </Form.Label>
@@ -69,7 +84,7 @@ export default class UpdateSellerForm extends Component {
     <div className='description'>
     <Form.Group className="mb-3 " >
     <Form.Label>Bussiness description </Form.Label>
-    <Form.Control as="textarea" rows={3} placeholder="Your Bussiness Description" />
+    <Form.Control name="description" as="textarea" rows={3} placeholder="Your Bussiness Description" />
     </Form.Group>
 
 
@@ -79,7 +94,7 @@ export default class UpdateSellerForm extends Component {
     {['checkbox'].map((type) => (
         <div key={`default-${type}`} className="mb-3">
 
-          <Form.Check 
+          <Form.Check name="isSeller"
            label={'I am a seller'}
 
             type={type}
@@ -101,20 +116,18 @@ export default class UpdateSellerForm extends Component {
 
     <Form.Group className="mb-3 " >
     <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
+    <Form.Control name="password" type="password" placeholder="Password" />
     </Form.Group>
 
     <Form.Group className="mb-3 " >
 
     <Form.Label>Confirm Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
+    <Form.Control name="cPassword" type="password" placeholder="Password" />
     </Form.Group>
     </div>
 
 
-    <Button variant="primary" type="submit" onClick={(e)=>{
-    e.preventDefault()
-    }}>
+    <Button variant="primary" type="submit" >
     Update
     </Button>
     </Form>

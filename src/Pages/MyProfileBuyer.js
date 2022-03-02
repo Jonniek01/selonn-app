@@ -49,11 +49,6 @@ function MyProfileBuyer({userId,clat,clong}) {
 
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="primary" type="submit" onClick={(e)=>{
-          e.preventDefault()
-          }}>
-          Update
-          </Button>
 
         </Modal.Footer>
       </Modal>
