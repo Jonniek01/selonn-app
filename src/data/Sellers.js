@@ -15,7 +15,6 @@ export const Sellers=[
         locationName:'Naivasha'
 
 
-
     },
     {
         userId:2,

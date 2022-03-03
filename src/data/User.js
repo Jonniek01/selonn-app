@@ -13,7 +13,4 @@ export const User= {
         googleMap:'',
         locationName:'',
         isSeller:false
-
-
-
     }

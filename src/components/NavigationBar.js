@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState,useEffect } from 'react';
 import {  Row, Col, Container} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import '../sass/NavigationBar.scss'
@@ -12,6 +13,10 @@ import { User } from '../data/User'
 
 
 function NavigationBar() {
+const [user,setUser] = useState('');
+  useEffect(()=>{
+  setUser(JSON.parse(localStorage.getItem('_user')));
+  })
   return (
     <>
     <Container className="nav-bar" fluid>
@@ -42,7 +47,7 @@ function NavigationBar() {
           <Link  className='link' to="/profile">
           <img className='profile-image-nav' src={profileImage}  style={{height:'40px' ,width:'40px',borderRadius:"50%",alignSelf:"center"}} alt=''></img>
 
-            <span>Profile</span>
+            <span>{user.firstName }</span>
             
             </Link>
         </Col>

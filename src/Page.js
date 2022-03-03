@@ -4,6 +4,7 @@ import NavigationBar from './components/NavigationBar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import ShopFeed from './Pages/ShopFeed';
 import About from './Pages/About';
+import Logout from './Pages/Logout';
 import NotFound from './Pages/NotFound';
 import { User } from './data/User';
 import MyProfileSeller from './Pages/MyProfileSeller';
@@ -40,6 +41,8 @@ function App() {
 
     <Route path='/about' element={<About/>} exact/>
     <Route path='/seller' element={<SellerProfileView/>} exact/>
+    <Route path='/logout' element={<About/>} exact/>
+
 
 
 
