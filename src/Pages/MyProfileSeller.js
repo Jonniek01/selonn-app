@@ -103,7 +103,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
         </Modal.Header>
         <Modal.Body>
 
-          <UpdateSellerForm/>
+          <UpdateSellerForm clat={clat} clong={clong}/>
 
         </Modal.Body>
       </Modal>

@@ -9,6 +9,25 @@ import '../sass/CreateAccount.scss'
 
 function CreateAccount() {
   let[seller,setSeller]=useState(false)
+  const[clat,setClat]=useState('');
+  const[clong,setClong]=useState('');
+  let handleSubmit=(event)=>{
+    event.preventDefault();
+    let fd = new FormData(event.target);
+    let data = Object.fromEntries(fd.entries());
+  
+    
+    alert(JSON.stringify(data))
+    
+  }
+
+  
+
+  navigator.geolocation.watchPosition(function(position) {
+     setClat(position.coords.latitude) 
+    setClong(position.coords.longitude) 
+  });
+
 
   function changeSeller(){
     setSeller(seller);
@@ -22,7 +41,7 @@ function CreateAccount() {
           <Container className='createAccount'>
 
           <h3>Create Account</h3>
-          <Form className='account-form'>
+          <Form className='account-form' onSubmit={handleSubmit}>
             <div className='create-names'>
 
 
@@ -77,12 +96,15 @@ function CreateAccount() {
             <h6><span>Double click</span><span><Button onClick={changeSeller}>Here</Button></span><span>if you are registering as a seller</span></h6>
           </Form.Group>
           <div className='more-seller' style={{display:seller===true?"block":"none"}}>
-            <div className='location-set-div'>
-            <Button className='set-location'>Set location</Button>
-            <p className='location-set'>Not set</p>
+          <div className='location-up-div'>
+    <p>Make sure you are in your bussiness location when submitting this form in order to set up your correct bussiness location</p>
+    <Form.Group className="mb-3 " >
+    <Form.Control name="fixedLatitude" type="hidden" value={clat} />
+    <Form.Control name="fixedLongitude" type="hidden" value={Number(clong)} />
 
+    </Form.Group>
 
-            </div>
+  </div>
 
           <div className='description'>
           <Form.Group className="mb-3 " >
@@ -129,9 +151,7 @@ function CreateAccount() {
           </div>
 
 
-          <Button variant="primary" type="submit" onClick={(e)=>{
-          e.preventDefault()
-          }}>
+          <Button variant="primary" type="submit" >
           Submit
           </Button>
           </Form>
