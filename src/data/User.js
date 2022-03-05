@@ -1,5 +1,5 @@
 export const User= {
-        userId:1,
+        userId:2,
         userName:'',
         longitudeCurrent:'',
         latitudeCurrent:'',

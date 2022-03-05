@@ -21,6 +21,7 @@ function App() {
             this.setLoggedIn(false);
         })
     })
+    
     if (loggedIn===true){
         return (
             <div><Page /></div>

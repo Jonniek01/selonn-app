@@ -92,11 +92,8 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
       setLoginPassword(e.target.value)
     }} />
   </Form.Group>
-  <Button variant="primary" type="submit" onClick={(e)=>{
-    e.preventDefault()
-    normalLogin()
-  }}>
-    Login
+  <Button variant="primary" type="submit">
+    Submit
   </Button>
   <Button variant="danger d-none" type="submit" onClick={(e)=>{
     e.preventDefault()
@@ -111,7 +108,7 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
     <button className='btn-primary' onClick={googleLogin}>Log In With Google</button>
 </div>
 
-<Link  className='createAccount' to="/createAccount">
+<Link  className='' to="/createAccount">
     Create Account
     
 </Link>

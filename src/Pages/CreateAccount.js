@@ -22,14 +22,13 @@ function CreateAccount() {
           <Container className='createAccount'>
 
           <h3>Create Account</h3>
-          <Form className='login-form'>
+          <Form className='account-form'>
             <div className='create-names'>
 
 
-          <Form.Group className="mb-3 " controlId="">
+          <Form.Group className="mb-3 " >
           <Form.Label>First Name</Form.Label>
           <Form.Control type="text" placeholder="First Name" />
-
           </Form.Group>
             <Form.Group className="mb-3 " controlId="">
           <Form.Label>Second Name</Form.Label>
@@ -44,11 +43,11 @@ function CreateAccount() {
           <div className='email-phone'>
 
           
-          <Form.Group className="mb-3 " controlId="formBasicEmail">
+          <Form.Group className="mb-3 " >
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />
           </Form.Group>
-          <Form.Group className="mb-3 " controlId="">
+          <Form.Group className="mb-3 " >
           <Form.Label>Phone Number</Form.Label>
           <Form.Control type="tell" placeholder="+254" />
           </Form.Group>
@@ -60,29 +59,69 @@ function CreateAccount() {
 
           </div>
 
-
-          <Form.Group className="mb-3 " controlId="">
+          <div className='brand-image'>
+          <Form.Group className="mb-3 " >
           <Form.Label>User Name </Form.Label>
           <Form.Control type="email" placeholder="Enter User Name" />
           </Form.Group>
+          <Form.Group className="mb-3 " >
+          <Form.Label>Cover Photo </Form.Label>
+          <Form.Control type="file" placeholder="Upload C" />
+          </Form.Group>
 
-          <Form.Group className="mb-3 " controlId="">
+
+
+          </div>
+
+          <Form.Group className="mb-3 " >
             <h6><span>Double click</span><span><Button onClick={changeSeller}>Here</Button></span><span>if you are registering as a seller</span></h6>
           </Form.Group>
           <div className='more-seller' style={{display:seller===true?"block":"none"}}>
-            seller additional info
+            <div className='location-set-div'>
+            <Button className='set-location'>Set location</Button>
+            <p className='location-set'>Not set</p>
+
+
+            </div>
+
+          <div className='description'>
+          <Form.Group className="mb-3 " >
+          <Form.Label>Bussiness description </Form.Label>
+          <Form.Control as="textarea" rows={3} placeholder="Your Bussiness Description" />
+          </Form.Group>
+
+
+
+          </div>
+         <div className='seller-check'>
+          {['checkbox'].map((type) => (
+              <div key={`default-${type}`} className="mb-3">
+
+                <Form.Check 
+                 label={'I am a seller'}
+
+                  type={type}
+                  id={`default-${type}`}
+                />
+
+                      </div>
+                    ))}
+          </div>
 
           </div>
 
 
+          
+
+
         <div className='passwords'>
 
-          <Form.Group className="mb-3 " controlId="formBasicPassword">
+          <Form.Group className="mb-3 " >
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Form.Group className="mb-3 " controlId="formBasicPassword">
+          <Form.Group className="mb-3 " >
 
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control type="password" placeholder="Password" />
@@ -104,7 +143,7 @@ function CreateAccount() {
 
 
 
-          <Link  className='createAccount' to="/">
+          <Link  className='log' to="/">
           Log in
 
           </Link>

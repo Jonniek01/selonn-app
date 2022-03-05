@@ -10,6 +10,7 @@
     .buyer-profile-head{
         display: grid;
         grid-template-columns: 1fr 2fr;
+        
         .profile-image{
             position: relative;
             height: 200px;
@@ -29,6 +30,10 @@
         }
     }
     
+}
+
+.buyer-contents{
+        z-index: 999;
 }
 
 @media only screen and (max-width: 780px) {
