@@ -4,8 +4,9 @@ import '../sass/LogIn.scss'
 import { Container,Form ,Button} from 'react-bootstrap'
 import { useState } from 'react'
 import '../sass/CreateAccount.scss'
+import axios from 'axios'
 
-
+/*eslint-disable */
 
 function CreateAccount() {
   let[seller,setSeller]=useState(false)
@@ -15,10 +16,14 @@ function CreateAccount() {
     event.preventDefault();
     let fd = new FormData(event.target);
     let data = Object.fromEntries(fd.entries());
-  
-    
-    alert(JSON.stringify(data))
-    
+ 
+    console.log("Attempting to create user..")
+    //submit data 
+    axios.post(`${SERVER_URL}/users`,data).then(res=>{
+      alert(JSON.stringify(res));
+      console.log("Finished creating user");
+    }).catch(err=>console.log(err))
+
   }
 
   
@@ -47,11 +52,11 @@ function CreateAccount() {
 
           <Form.Group className="mb-3 " >
           <Form.Label>First Name</Form.Label>
-          <Form.Control type="text" placeholder="First Name" />
+          <Form.Control type="text" name="firstName" placeholder="First Name" />
           </Form.Group>
             <Form.Group className="mb-3 " controlId="">
           <Form.Label>Second Name</Form.Label>
-          <Form.Control type="text" placeholder="Second Name" />
+          <Form.Control type="text" name="lastName" placeholder="Second Name" />
 
           </Form.Group>
           </div>
@@ -64,15 +69,15 @@ function CreateAccount() {
           
           <Form.Group className="mb-3 " >
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control type="email" name="email" placeholder="Enter email" />
           </Form.Group>
           <Form.Group className="mb-3 " >
           <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="tell" placeholder="+254" />
+          <Form.Control type="tell"  name="phone" placeholder="+254" />
           </Form.Group>
           </div>
 
-          <Form.Text className="text-muted">
+          <Form.Text className="text-muted" >
           As just a buyer, We never share your contact information with anyone. As a seller, it is used by the buyers to contact you
           </Form.Text>
 
@@ -81,11 +86,11 @@ function CreateAccount() {
           <div className='brand-image'>
           <Form.Group className="mb-3 " >
           <Form.Label>User Name </Form.Label>
-          <Form.Control type="email" placeholder="Enter User Name" />
+          <Form.Control type="text" name="username" placeholder="Enter User Name" />
           </Form.Group>
           <Form.Group className="mb-3 " >
           <Form.Label>Cover Photo </Form.Label>
-          <Form.Control type="file" placeholder="Upload C" />
+          <Form.Control type="file" name="profile" placeholder="Upload C" />
           </Form.Group>
 
 
@@ -109,7 +114,7 @@ function CreateAccount() {
           <div className='description'>
           <Form.Group className="mb-3 " >
           <Form.Label>Bussiness description </Form.Label>
-          <Form.Control as="textarea" rows={3} placeholder="Your Bussiness Description" />
+          <Form.Control as="textarea" name="description" rows={3} placeholder="Your Bussiness Description" />
           </Form.Group>
 
 
@@ -140,7 +145,7 @@ function CreateAccount() {
 
           <Form.Group className="mb-3 " >
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" name="password" placeholder="Password" />
           </Form.Group>
 
           <Form.Group className="mb-3 " >

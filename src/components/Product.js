@@ -1,7 +1,7 @@
 import React from 'react'
-import { Products } from '../data/Products'
+import  Products  from '../data/Products'
 import '../sass/Product.scss'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
   // const [product,setProducts]=useState(Products)
@@ -13,14 +13,19 @@ import { Link } from 'react-router-dom'
 
   }
 
-export const Producthome = () => {
-  
-
+export const Producthome =  () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+useEffect(async ()=>{
+  const products = await Products();
+  setProducts(products)
+  setLoading(false)
+},[])
 
   return (
     <div className='product-card'>
         <div className='name-image'>
-            <div className='product-name'>ProductName</div>
+            <div className='product-name'>{loading?'loading...':products[0].name}</div>
             <div className='product-image'>Image</div>
         </div>
         <div className='price-available'>

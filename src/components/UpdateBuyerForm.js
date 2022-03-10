@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { Button ,Form} from 'react-bootstrap'
+import axios from 'axios';
 
+/*eslint-disable */
 
 export default class UpdateBuyerForm extends Component {
   constructor(props){
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.user = JSON.parse(localStorage.getItem('_item'));
   }
   
 // Form submitting logic, prevent default page refresh 
@@ -13,9 +16,16 @@ handleSubmit(event){
   event.preventDefault();
   let fd = new FormData(event.target);
   let data = Object.fromEntries(fd.entries());
-
   
-  alert(JSON.stringify(data))
+  console.log("Attempting to update buyer information")
+  //update buyer
+  
+  axios.put(`${SERVER_URL}/users/${this.user.id}`,data).then(res=>res.json()).then(res=>{
+    console.log("Finished updating user information")
+    alert(res)
+  }).catch(err=>console.log(err))
+
+  console.log("Finished upating buyer information")
 }
 
   render() {

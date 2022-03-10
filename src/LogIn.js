@@ -2,12 +2,13 @@ import {React, useEffect, useState} from 'react'
 import Emitter from './emitter';
 import { Link, useSearchParams } from 'react-router-dom'
 import { Container,Form ,Button} from 'react-bootstrap'
+import axios from 'axios';
 import { getAuth, signInWithPopup, GoogleAuthProvider,
 createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut
  } from "firebase/auth";
 import { app,db, auth } from './firebase/config';
 import { collection, doc, setDoc, getDocs, query, where } from "firebase/firestore";
-
+/*eslint-disable */
  function LogIn() {
     const [user, setUser] = useState({});
     const [error, setError] = useState({});
@@ -15,20 +16,31 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
     const [registerPassword, setRegisterPassword] = useState('')
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
-    
+    useEffect(()=>{
+      Emitter.on('logout',()=>{
+        logout;
+        console.log("Has got the logout message. Logging you out in the login page")
+      })
+    })
+
     onAuthStateChanged(auth, (currentuser)=>{
       if(currentuser){
         //notify user login success and store user in localstorage.
-        Emitter.emit("loginSuccess1", currentuser);
+        Emitter.emit("loginSuccess", currentuser);
         localStorage.setItem('_user',JSON.stringify(currentuser));
       }
     });
     const normalLogin = async ()=>{
       try{
-      const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-      console.log(user);
-        if(user){
-          Emitter.emit("loginSuccess", user);
+      const {data} = await axios.post(`${SERVER_URL}/auth/signin`,{
+        email:loginEmail,
+        password: loginPassword
+      })
+        if(data.status == true){
+          console.log("successful login",data)
+          Emitter.emit("loginSuccess", data);
+        }else{
+          console.log("error validating credentials",data)
         }
       }catch(err){
         setError(error);
@@ -75,7 +87,7 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
 
       <h3>LOG IN</h3>
       <span className="text-danger">{error?.message}</span>
-      <Form className='login-form'>
+      <Form className='login-form' onSubmit={(e)=>e.preventDefault()}>
   <Form.Group className="mb-3 " controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter email" onChange={(e)=>{
@@ -92,7 +104,7 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
       setLoginPassword(e.target.value)
     }} />
   </Form.Group>
-  <Button variant="primary" type="submit">
+  <Button variant="primary" type="submit" onClick={normalLogin}>
     Submit
   </Button>
   <Button variant="danger d-none" type="submit" onClick={(e)=>{

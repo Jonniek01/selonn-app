@@ -4,10 +4,9 @@ import Emitter from '../emitter'
 
 function Logout() {
     useEffect(()=>{
-        Emitter.on('sayHi', ()=>{
-          console.log("I was greeted in the logout page")
-        })
-        console.log("This is what I am listening in the logout page")
+
+        Emitter.emit('logout');
+        console.log("Attempting to log you out in a minute.....")
     })
   return (
     <div>Loggin you out in a minute...</div>

@@ -66,9 +66,34 @@ const itemName="User";
             message:`${itemName} deleted successfully`
         }
     }
+    /**Login */
+    async function login(email,password){
+        let data = [];
+        const q = query(collection(db, "users"), where("email", "==", email), where("password", "==", password));
 
+        const querySnapshot = await getDocs(q);
+        if(querySnapshot.empty){
+            return {
+                status:0,
+                message:"Incorrct login credentials. Please try again."
+            }
+        }else{
+            querySnapshot.forEach((doc) => {
+                data.push({
+                    id:doc.id,
+                    ...doc.data()
+                    })
+            });
+
+            return {
+                status:1,
+                message:'Login success',
+                data
+            };
+        }
+    }
 
 
 module.exports={
-    addUser, getUser,getUsers,updateUser,deleteUser
+    addUser, getUser,getUsers,updateUser,deleteUser, login
 }

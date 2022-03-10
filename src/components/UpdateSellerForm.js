@@ -1,15 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import { Button ,Form} from 'react-bootstrap'
 import { useState } from 'react';
+import axios from 'axios';
 
+/*eslint-disable */
 function UpdateSellerForm({clat,clong}) {
+  let storedUser = JSON.parse(localStorage.getItem('_user'));
+  const [user, setUser] = useState(storedUser)
+
+  useEffect(()=>{
+    
+  })
+
  let handleSubmit=(event)=>{
     event.preventDefault();
     let fd = new FormData(event.target);
     let data = Object.fromEntries(fd.entries());
-  
     
-    alert(JSON.stringify(data))
+    console.log("Attempting to update seller information")
+    
+    //update user details
+    axios.put(`${SERVER_URL}/users`,data).then(res=>{
+      console.log("Finished updating seller information")
+      alert(res);
+    }).catch(err=>console.log(err))
+
     
   }
   return (

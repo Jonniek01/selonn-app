@@ -13,9 +13,12 @@ import { User } from '../data/User'
 
 
 function NavigationBar() {
-const [user,setUser] = useState('');
+let savedUser = JSON.parse(localStorage.getItem('_user'));
+const [user,setUser] = useState(savedUser);
+const [loading, setLoading] = useState(true);
   useEffect(()=>{
   setUser(JSON.parse(localStorage.getItem('_user')));
+  setLoading(false);
   })
   return (
     <>
@@ -47,7 +50,7 @@ const [user,setUser] = useState('');
           <Link  className='link' to="/profile">
           <img className='profile-image-nav' src={profileImage}  style={{height:'40px' ,width:'40px',borderRadius:"50%",alignSelf:"center"}} alt=''></img>
 
-            <span>{user.firstName }</span>
+            <span>{loading?'loading...':user.displayName}</span>
             
             </Link>
         </Col>

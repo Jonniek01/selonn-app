@@ -1,7 +1,8 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import { Button ,Form} from 'react-bootstrap'
 
-
+/*eslint-disable */
 export default class CreateProductForm extends Component {
   constructor(props){
     super(props)
@@ -14,8 +15,10 @@ handleSubmit(event){
   let fd = new FormData(event.target);
   let data = Object.fromEntries(fd.entries());
 
-  
-  alert(JSON.stringify(data))
+  axios.post(`${SERVER_URL}/products`,data).then(res=>{
+    console.log("Finished creating product")
+    alert(res);
+  }).catch(err=>console.log(err))
 }
   render() {
     return (

@@ -6,7 +6,7 @@ import '../sass/SellerProfileView.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 import { User } from '../data/User'
-import { Products } from '../data/Products'
+import  Products  from '../data/Products'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
