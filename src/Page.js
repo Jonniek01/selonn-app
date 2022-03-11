@@ -6,7 +6,6 @@ import ShopFeed from './Pages/ShopFeed';
 import About from './Pages/About';
 import Logout from './Pages/Logout';
 import NotFound from './Pages/NotFound';
-import { User } from './data/User';
 import MyProfileSeller from './Pages/MyProfileSeller';
 import MyProfileBuyer from './Pages/MyProfileBuyer';
 import { useState } from 'react';
@@ -15,6 +14,8 @@ import SellerProfileView from './Pages/SellerProfileView';import { Link } from '
 
 
 function App() {
+  const User = JSON.parse(localStorage.getItem('_user'));
+
   const[clat,setClat]=useState('');
   const[clong,setClong]=useState('');
 
@@ -36,7 +37,7 @@ function App() {
 
     <Routes>
     <Route path='/' element={<ShopFeed/>} exact/>
-    <Route path='/profile' element= {User.isSeller===true?<MyProfileSeller userId={User.userId} clat={clat} clong={clong}/>:<MyProfileBuyer userId={User.userId} clat={clat} clong={clong}/>} />
+    <Route path='/profile' element= {1===1?<MyProfileSeller userId={User.userId} clat={clat} clong={clong}/>:<MyProfileBuyer userId={User.userId} clat={clat} clong={clong}/>} />
 
 
     <Route path='/about' element={<About/>} exact/>

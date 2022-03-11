@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 
 import '../sass/MyProfileBuyer.scss'
-import UpdateBuyerForm from '../components/UpdateBuyerForm';
+import UpdateBuyerForm from '../components/UpdateForm';
 
 function MyProfileBuyer({userId,clat,clong}) {
 

@@ -20,7 +20,6 @@ function CreateAccount() {
     console.log("Attempting to create user..")
     //submit data 
     axios.post(`${SERVER_URL}/users`,data).then(res=>{
-      alert(JSON.stringify(res));
       console.log("Finished creating user");
     }).catch(err=>console.log(err))
 
@@ -88,10 +87,6 @@ function CreateAccount() {
           <Form.Label>User Name </Form.Label>
           <Form.Control type="text" name="username" placeholder="Enter User Name" />
           </Form.Group>
-          <Form.Group className="mb-3 " >
-          <Form.Label>Cover Photo </Form.Label>
-          <Form.Control type="file" name="profile" placeholder="Upload C" />
-          </Form.Group>
 
 
 
@@ -104,6 +99,8 @@ function CreateAccount() {
           <div className='location-up-div'>
     <p>Make sure you are in your bussiness location when submitting this form in order to set up your correct bussiness location</p>
     <Form.Group className="mb-3 " >
+    <Form.Control type="text" name="location" placeholder="Location Name" />
+
     <Form.Control name="fixedLatitude" type="hidden" value={clat} />
     <Form.Control name="fixedLongitude" type="hidden" value={Number(clong)} />
 

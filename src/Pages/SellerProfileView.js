@@ -5,7 +5,6 @@ import '../sass/SellerProfileView.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
-import { User } from '../data/User'
 import  Products  from '../data/Products'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -15,6 +14,7 @@ import { Link } from 'react-router-dom'
 function sellerProfileView(sellerId) {
   // const [products,setProducts]=useState(Products)
   // const [user,setUser]=useState(User)
+  const User = JSON.parse(localStorage.getItem('_user'));
   const userId=User.userId;
   const product=Products.filter(product=>product.userId===userId).map((product)=>{
     return<div key={product.productId}>

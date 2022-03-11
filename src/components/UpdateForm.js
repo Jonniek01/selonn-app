@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 /*eslint-disable */
-function UpdateSellerForm({clat,clong}) {
+function UpdateForm({clat,clong}) {
   let storedUser = JSON.parse(localStorage.getItem('_user'));
   const [user, setUser] = useState(storedUser)
 
@@ -28,8 +28,7 @@ function UpdateSellerForm({clat,clong}) {
     
   }
   return (
-    <>        
-        
+    <div>
     <Form className='form' onSubmit={handleSubmit}>
   <div className='create-names'>
 
@@ -85,6 +84,7 @@ As just a buyer, We never share your contact information with anyone. As a selle
   <div className='location-up-div'>
     <p>Make sure you are in your bussiness location when submitting this form in order to set up your correct bussiness location</p>
     <Form.Group className="mb-3 " >
+          <Form.Control type="text" name="location" placeholder="Location Name" />
     <Form.Control name="fixedLatitude" type="hidden" value={Number(clat)} />
     <Form.Control name="fixedLongitude" type="hidden" value={Number(clong)} />
 
@@ -142,10 +142,11 @@ As just a buyer, We never share your contact information with anyone. As a selle
 Update
 </Button>
 </Form>
-</>
-)
+
+
+    </div>
+
+  )
 }
 
-export default UpdateSellerForm
-
-
+export default UpdateForm

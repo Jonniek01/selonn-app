@@ -12,8 +12,6 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
  function LogIn() {
     const [user, setUser] = useState({});
     const [error, setError] = useState({});
-    const [registerEmail,setRegisterEmail] = useState('');
-    const [registerPassword, setRegisterPassword] = useState('')
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
     useEffect(()=>{

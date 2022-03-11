@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { User } from '../data/User'
+import Users  from '../data/User'
 import { Sellers } from '../data/Sellers'
 import {Producthome,productprofile} from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,8 +13,8 @@ import { useState } from 'react'
 
 
 function ShopFeed() {
-  const [sellers,setSellers]=useState(Sellers);
-  const [user,setUser]=useState(User);
+  const [sellers,setSellers]=useState(Users);
+  const User = JSON.parse(localStorage.getItem('_user'));
 
   
 const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b.latitudeFixed)).map((seller)=>{
@@ -22,9 +22,9 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
 
  return (<div key={seller.userId} className="feed-card">
    <div className='feedcard-header'>
-   <span className='brand'>{seller.brand}</span>
-   <span className='distance'>{distance} KM</span>
-   <span className='location-name'>{seller.locationName}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
+   <span className='brand'>Brand</span>
+   <span className='distance'>Distance</span>
+   <span className='location-name'>Location Name<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
 
 
    </div>

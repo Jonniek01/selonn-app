@@ -58,10 +58,8 @@ export const Sellers=[
         latitudeCurrent:null,
         firstName:'John',
         secondName:'Doe',
-        photoUrl:'',
         longitudeFixed:37.82,
         latitudeFixed:-6.332,
-        googleMap:'',
         locationName:'Nairobi'
 
 

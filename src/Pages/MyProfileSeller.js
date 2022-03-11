@@ -5,10 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 import  Products  from '../data/Products'
 import { useState } from 'react'
-import UpdateSellerForm from '../components/UpdateSellerForm'
+import UpdateSellerForm from '../components/UpdateForm'
 import UpdateProductForm from '../components/UpdateProductForm'
 import CreateProductForm from '../components/CreateProductForm'
-
 
 
 
