@@ -6,24 +6,24 @@ import { Link } from 'react-router-dom'
 
   // const [product,setProducts]=useState(Products)
   // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
-  // })
+  // }
 
-  let sellerId=null
-  function setId(){
+function Product(userId,search) {
+          const [products, setProducts] = useState([]);
+          const [loading, setLoading] = useState(true);
+        useEffect(async ()=>{
+          const products = await Products();
+          setProducts(products)
+          setLoading(false)
+        },[])
 
-  }
-
-export const Producthome =  () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-useEffect(async ()=>{
-  const products = await Products();
-  setProducts(products)
-  setLoading(false)
-},[])
+        function setId(){
+         const id=userId;
+         return id
+        }
 
   return (
-    <div className='product-card'>
+    <div key={loading?'':products[0].id} className='product-card'>
         <div className='name-image'>
             <div className='product-name'>{loading?'loading...':products[0].name}</div>
             <div className='product-image'>Image</div>
@@ -32,17 +32,12 @@ useEffect(async ()=>{
             <div className='price'><p>Ksh.252.00</p></div>
             <Link  className='' to="/seller">
 
-            <button onClick={setId} className='enquire'>Enquire</button>
+            <button  className='enquire'>Enquire</button>
             </Link>
         </div>
     </div>
-  )
-}
+  )}
 
+export default Product
 
-export const Productprofile = () => {
-  return (
-    <div>{sellerId}</div>
-  )
-}
 

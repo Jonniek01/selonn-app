@@ -1,40 +1,82 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import Users  from '../data/User'
-import { Sellers } from '../data/Sellers'
-import {Producthome,productprofile} from '../components/Product'
+import Users  from '../data/Users'
+import Product from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import '../sass/shopFeed.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
-function ShopFeed() {
-  const [sellers,setSellers]=useState(Users);
+function ShopFeed({clat,clong}) {
+
+  const [sellers,setSellers]=useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search,setSearch]=useState('')
+ function handleChange(e){
+    setSearch(e.target.value)
+  }
+useEffect(async ()=>{
+  const sellers = await Users();
+  setSellers(sellers)
+  setLoading(false)
+},[])
+
+function distance(lat1, lon1, lat2, lon2) {
+  console.log(lat1,lon1,lat2,lon2)
+  // console.log('curr long:'+clong+" curr lat: "+clat)
+  // console.log("lat 1"+lat1+"Longitude 1"+lon1)
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  d=parseFloat(d);
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
   const User = JSON.parse(localStorage.getItem('_user'));
 
   
-const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b.latitudeFixed)).map((seller)=>{
- let distance=seller.latitudeFixed
+const FeedCard=sellers.map((seller)=>{
 
- return (<div key={seller.userId} className="feed-card">
+ if(seller.fixedLatitude){
+   let lat1=parseFloat(seller.fixedLatitude);
+   let  lon1= parseFloat(seller.fixedLongitude);
+   let lat2=Number(clat );
+   let lon2=Number(clong );
+ 
+
+
+ return (<div key={seller.id} className="feed-ca(a, b) => parseFloat(a.latitudeFixed) - parseFloat(b.latitudeFixed)rd">
    <div className='feedcard-header'>
-   <span className='brand'>Brand</span>
-   <span className='distance'>Distance</span>
+   <span className='brand'>{seller.username}</span>
+   <span className='distance'>distance: {distance(lat1,lon1,lat2,lon2)} km</span>
    <span className='location-name'>Location Name<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
 
 
    </div>
 
 
-   <Producthome userId={seller.userId}/>
+
+   <Product userId={seller.userId} search={search}/>
 
    
    
    </div>)
+ }
 });
   return (
     <>
@@ -42,7 +84,7 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
       <div className='search-container'>
       <div className='search'>
       <FontAwesomeIcon className='search-icon'  icon={faSearch}  />
-      <input className='search-input' placeholder='Search...' type="text"></input>
+      <input className='search-input' onChange={handleChange} placeholder='Search...' type="text"></input>
 
         
       </div>
@@ -55,7 +97,7 @@ const FeedCard=sellers.sort((a, b) => parseFloat(a.latitudeFixed) - parseFloat(b
 
       <div className='feed-container'>
         
-      {FeedCard}
+      {loading?'loading...':FeedCard}
 
 
 

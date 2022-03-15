@@ -8,18 +8,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop } from '@fortawesome/free-solid-svg-icons'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 import profileImage from '../Images/me.jpg'
-import { User } from '../data/User'
+import { User } from '../data/Users'
 
 
 
 function NavigationBar() {
 let savedUser = JSON.parse(localStorage.getItem('_user'));
 const [user,setUser] = useState(savedUser);
-const [loading, setLoading] = useState(true);
-  useEffect(()=>{
-  setUser(JSON.parse(localStorage.getItem('_user')));
-  setLoading(false);
-  })
+
   return (
     <>
     <Container className="nav-bar" fluid>
@@ -50,7 +46,7 @@ const [loading, setLoading] = useState(true);
           <Link  className='link' to="/profile">
           <img className='profile-image-nav' src={profileImage}  style={{height:'40px' ,width:'40px',borderRadius:"50%",alignSelf:"center"}} alt=''></img>
 
-            <span>{loading?'loading...':user.displayName}</span>
+            <span>{!user?'loading...':user.displayName}</span>
             
             </Link>
         </Col>

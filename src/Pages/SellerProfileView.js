@@ -16,28 +16,28 @@ function sellerProfileView(sellerId) {
   // const [user,setUser]=useState(User)
   const User = JSON.parse(localStorage.getItem('_user'));
   const userId=User.userId;
-  const product=Products.filter(product=>product.userId===userId).map((product)=>{
-    return<div key={product.productId}>
-          <div className='product-card-seller'>
-        <div className='name-image'>
-            <div className='product-name'>{product.productName}</div>
-            <div className='product-image'>Image</div>
-        </div>
-        <div className='price-available'>
-            <div className='price'><p>{product.price} Ksh</p></div>
-            <span>
-            <p className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</p>
-            </span>
+  // const product=Products.filter(product=>product.userId===userId).map((product)=>{
+  //   return<div key={product.productId}>
+  //         <div className='product-card-seller'>
+  //       <div className='name-image'>
+  //           <div className='product-name'>{product.productName}</div>
+  //           <div className='product-image'>Image</div>
+  //       </div>
+  //       <div className='price-available'>
+  //           <div className='price'><p>{product.price} Ksh</p></div>
+  //           <span>
+  //           <p className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</p>
+  //           </span>
             
-        </div>
-    </div>
+  //       </div>
+  //   </div>
 
       
       
-      </div>
-  }
+  //     </div>
+  // }
 
-  )
+  // )
   return (
     <Container>
       <div className='seller-profile'>
@@ -60,7 +60,7 @@ function sellerProfileView(sellerId) {
 
     </div>
     <div className='seller-product-cards'>
-      {product}
+      {/* {product} */}
     </div>
     </div>
 
