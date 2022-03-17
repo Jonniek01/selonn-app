@@ -12,7 +12,7 @@ window.axios = axios;
 window.SERVER_URL='http://localhost:5000';
 
 function App() {
-    const [loggedIn,setLoggedIn]=useState(false);
+    const [loggedIn,setLoggedIn]=useState(true);
     useEffect(()=>{
         Emitter.on("loginSuccess",(user)=>{
             setLoggedIn(true);

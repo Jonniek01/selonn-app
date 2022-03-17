@@ -45,7 +45,7 @@ const itemName="Product";
                 })
         });
 
-        return
+        return data;
     }
     /**Update */
     async function updateProduct(id,data){
@@ -68,8 +68,22 @@ const itemName="Product";
         }
     }
 
+/** User Products */
+async function getUserProducts(userId){
+    let data = [];
+        const q = query(collection(db, "products"), where("userId", "==", userId));
 
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            data.push({
+                id:doc.id,
+                ...doc.data()
+                })
+        });
+
+        return data;
+}
 
 module.exports={
-    addProduct, getProduct, getProducts,updateProduct,deleteProduct
+    addProduct, getProduct, getProducts,updateProduct,deleteProduct, getUserProducts
 }

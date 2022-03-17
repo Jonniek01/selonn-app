@@ -1,5 +1,5 @@
 const {addUser,getUser, getUsers,updateUser, deleteUser} =require('../controllers/UserController');
-
+const { getUserProducts } = require('../controllers/ProductController');
 const express = require('express');
 const router = express.Router();
 let id,message;
@@ -33,6 +33,11 @@ router.delete('/:id', async (req,res)=>{
     res.json(message);
 })
 
-
+/**Specific resources routes */
+router.get('/:id/products', async (req, res)=>{
+    id =req.params.id,
+    message = await getUserProducts(id);
+    res.json(message);
+})
 
 module.exports=router;

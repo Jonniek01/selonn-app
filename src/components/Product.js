@@ -1,5 +1,5 @@
 import React from 'react'
-import  Products  from '../data/Products'
+import { getProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -12,7 +12,7 @@ function Product(userId,search) {
           const [products, setProducts] = useState([]);
           const [loading, setLoading] = useState(true);
         useEffect(async ()=>{
-          const products = await Products();
+          const products = await getProducts();
           setProducts(products)
           setLoading(false)
         },[])
@@ -29,7 +29,7 @@ function Product(userId,search) {
             <div className='product-image'>Image</div>
         </div>
         <div className='price-available'>
-            <div className='price'><p>Ksh.252.00</p></div>
+            <div className='price'><p>{loading?'loading':products[0].price}</p></div>
             <Link  className='' to="/seller">
 
             <button  className='enquire'>Enquire</button>

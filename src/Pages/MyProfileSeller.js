@@ -1,17 +1,19 @@
 import React from 'react'
-import { Container,Modal,Button } from 'react-bootstrap'
 import '../sass/MyProfileSeller.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
-import  Products  from '../data/Products'
-import { useState } from 'react'
+import { getProducts, getUserProducts } from '../data/Products'
+import { getUser } from '../data/Users'
+import { useState, useEffect } from 'react'
 import UpdateSellerForm from '../components/UpdateForm'
 import UpdateProductForm from '../components/UpdateProductForm'
 import CreateProductForm from '../components/CreateProductForm'
+import SellerProduct from '../components/SellerProduct';
+import { Container, Modal, Button } from 'react-bootstrap'
+import axios from 'axios'
+/*eslint-disable no-undef*/
 
-
-
-function MyProfileSeller({userId,clat,clong}) {
+ function MyProfileSeller({userId,clat,clong}) {
   const [show, setShow] = useState(false);
   const [showp, setShowp] = useState(false);
   const handleClosep = () => setShowp(false);
@@ -20,38 +22,21 @@ function MyProfileSeller({userId,clat,clong}) {
   const handleClosepedit = () => setShowpedit(false);
   const handleShowpedit = () => setShowpedit(true);
 
+  const [loading, setLoading] = useState(true);
+  const [seller, setSeller] = useState({})
+  const [products,setProducts]=useState([]);
 
+  useEffect(()=>{
+    async function getData(){
+        let seller =  await getUser(userId);
+        setSeller(seller);
+        let userProducts =  await getUserProducts(userId);
+        setProducts(userProducts);
+        setLoading(false);
+    }
+    getData();
 
-  const [products,setProducts]=useState(Products)
-  const product=products.filter(product=>product.userId===userId).map((product)=>{
-    return<div key={product.productId}>
-          <div className='product-card-seller'>
-        <div className='name-image'>
-            <div className='product-name'>{product.productName}</div>
-            <div className='product-image'>Image</div>
-        </div>
-        <div className='price-available'>
-            <div className='price'><p>{product.price} Ksh</p></div>
-            <span>
-            <button className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</button>
-            <Button variant="primary" onClick={handleShowpedit}>
-      Edit Product
-      </Button>
-
-
-
-            </span>
-            
-        </div>
-    </div>
-
-      
-      
-      </div>
-  }
-
-  )
-
+  },[])
 
   return (
     <Container>
@@ -64,8 +49,8 @@ function MyProfileSeller({userId,clat,clong}) {
           <span>userId:{userId}</span><span>lat:{clat}</span><span>long:{clong}</span>
 
           <p className='description'>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convallis sem, quis egestas ante lacinia sed. Nunc luctus dui in arcu semper, vel mattis libero varius. Donec at ligula massa. Praesent convallis et justo et fringilla
-  </p>
+              {seller.description}
+          </p>
             
         </div>
 
@@ -83,7 +68,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
 </span>
     </div>
     <div className='seller-product-cards'>
-      {product}
+      {/* {SellerProduct(products)} */}
     </div>
     </div>
 
@@ -133,7 +118,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convall
       
 
 
-</Container>  )
+</Container> 
+    )
 }
 
 export default MyProfileSeller

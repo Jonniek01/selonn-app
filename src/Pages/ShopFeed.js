@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import Users  from '../data/Users'
+import { getUser, getUsers }  from '../data/Users'
 import Product from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
@@ -20,7 +20,7 @@ function ShopFeed({clat,clong}) {
     setSearch(e.target.value)
   }
 useEffect(async ()=>{
-  const sellers = await Users();
+  const sellers = await getUsers();
   setSellers(sellers)
   setLoading(false)
 },[])
@@ -69,15 +69,14 @@ const FeedCard=sellers.map((seller)=>{
 
    </div>
 
-
-
    <Product userId={seller.userId} search={search}/>
 
-   
    
    </div>)
  }
 });
+
+
   return (
     <>
     <Container>

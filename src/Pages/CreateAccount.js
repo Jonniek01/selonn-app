@@ -87,9 +87,10 @@ function CreateAccount() {
           <Form.Label>User Name </Form.Label>
           <Form.Control type="text" name="username" placeholder="Enter User Name" />
           </Form.Group>
-
-
-
+          <Form.Group className="mb-3 " >
+          <Form.Label>Cover Photo </Form.Label>
+          <Form.Control type="file" name="profile" placeholder="Upload C" />
+          </Form.Group>
           </div>
 
           <Form.Group className="mb-3 " >
@@ -133,11 +134,6 @@ function CreateAccount() {
           </div>
 
           </div>
-
-
-          
-
-
         <div className='passwords'>
 
           <Form.Group className="mb-3 " >

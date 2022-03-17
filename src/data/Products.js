@@ -1,8 +1,12 @@
 /*eslint-disable */
 import axios from 'axios';
-async function Products(){
+export async function getProducts(){
    const {data} = await axios.get(`http://localhost:5000/products`);
    return data;
 }
 
-export default Products
+export async  function getUserProducts(userId) {
+   const {data} = await axios.get(`${SERVER_URL}/users/${userId}/products`);
+   return data;
+ }
+
