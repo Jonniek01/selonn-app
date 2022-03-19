@@ -10,9 +10,11 @@ export default class CreateProductForm extends Component {
     this.responseRef = React.createRef();
     this.state={
       user: JSON.parse(localStorage.getItem('_user')),
+      message:""
       
     }
   }
+
 // Form submitting logic, prevent default page refresh 
 handleSubmit(event){
   event.preventDefault();
@@ -21,14 +23,21 @@ handleSubmit(event){
   let data = Object.fromEntries(fd.entries());
   axios.post(`/products`,data).then(({data})=>{
     if(data.status == true){
-      form.reset;
+      form.reset();
+
     }
-  }).catch(err=>console.log(err))
+  }).catch(err=>  this.setState(message=>message=err)
+  )
+  this.state.message="Product created succesfully"
+  this.setState(message=>message)
+
+
 }
   render() {
     return (
       <div>        
     <Form className='form-product' onSubmit={this.handleSubmit}>
+      <div className='message' style={{color:'Green'}}>{this.state.message}</div>
       <div className='serverResponse' ref={this.responseRef}></div>
       <div className='name-price'>
 
