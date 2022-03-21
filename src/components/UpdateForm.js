@@ -1,30 +1,20 @@
 import React, { Component, useEffect } from 'react'
 import { Button ,Form} from 'react-bootstrap'
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 
 /*eslint-disable */
 function UpdateForm({clat,clong}) {
-  let storedUser = JSON.parse(localStorage.getItem('_user'));
-  const [user, setUser] = useState(storedUser)
-
-  useEffect(()=>{
-    
-  })
-
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('_user')));
  let handleSubmit=(event)=>{
     event.preventDefault();
     let fd = new FormData(event.target);
     let data = Object.fromEntries(fd.entries());
     
-    console.log("Attempting to update seller information")
-    
     //update user details
-    axios.put(`${SERVER_URL}/users`,data).then(res=>{
-      console.log("Finished updating seller information")
-      alert(res);
+    axios.put(`/users/${user.uid}`,data).then(res=>{
+      alert("Finished updating seller information");
     }).catch(err=>console.log(err))
-
     
   }
   return (
@@ -35,11 +25,11 @@ function UpdateForm({clat,clong}) {
 
 <Form.Group className="mb-3 " >
 <Form.Label>First Name</Form.Label>
-<Form.Control name="firstName" type="text" placeholder="First Name" />
+<Form.Control name="firstName" type="text" value={user.firstName || ''} placeholder="First Name" />
 </Form.Group>
   <Form.Group className="mb-3 " controlId="">
 <Form.Label>Second Name</Form.Label>
-<Form.Control name="secondName" type="text" placeholder="Second Name" />
+<Form.Control name="secondName" type="text" value={user.lastName || ''} placeholder="Second Name"/>
 
 </Form.Group>
 </div>
@@ -52,11 +42,11 @@ function UpdateForm({clat,clong}) {
 
 <Form.Group className="mb-3 " >
 <Form.Label>Email address</Form.Label>
-<Form.Control name="email" type="email" placeholder="Enter email" />
+<Form.Control name="email" type="email" value={user.email || ''} placeholder="Enter email" />
 </Form.Group>
 <Form.Group className="mb-3 " >  
 <Form.Label>Phone Number</Form.Label>
-<Form.Control name="tell" type="tell" placeholder="+254" />
+<Form.Control name="tell" type="tell" value={user.phone || ''} placeholder="+254" />
 </Form.Group>
 </div>
 
@@ -69,15 +59,8 @@ As just a buyer, We never share your contact information with anyone. As a selle
 <div className='brand-image'>
 <Form.Group className="mb-3 " >
 <Form.Label>User Name </Form.Label>
-<Form.Control name="userName" type="text" placeholder="Enter User Name" />
+<Form.Control name="userName" type="text" value={user.username || ''} placeholder="Enter User Name" />
 </Form.Group>
-<Form.Group className="mb-3 " >
-<Form.Label>Cover Photo </Form.Label>
-<Form.Control type="file" placeholder="Upload C" />
-</Form.Group>
-
-
-
 </div>
 
 <div className='more-seller' >
@@ -95,7 +78,7 @@ As just a buyer, We never share your contact information with anyone. As a selle
 <div className='description'>
 <Form.Group className="mb-3 " >
 <Form.Label>Bussiness description </Form.Label>
-<Form.Control name="description" as="textarea" rows={3} placeholder="Your Bussiness Description" />
+<Form.Control name="description" as="textarea" rows={3} value={user.description || ''} placeholder="Your Bussiness Description" />
 </Form.Group>
 
 
