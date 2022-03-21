@@ -8,13 +8,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShop } from '@fortawesome/free-solid-svg-icons'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 import profileImage from '../Images/me.jpg'
-import { User } from '../data/Users'
 
 
 
 function NavigationBar() {
-let savedUser = JSON.parse(localStorage.getItem('_user'));
+let savedUser = JSON.parse(localStorage.getItem('_user'))[0];
 const [user,setUser] = useState(savedUser);
+
+const[name,setName]=useState('Name')
+let userName=()=>{
+  if(user.fixedLatitude===undefined){
+    setName(user.displayName)
+  }
+  else{
+    setName(user.username)
+  }
+  return name;
+}
+
+
+
 
   return (
     <>
@@ -46,7 +59,7 @@ const [user,setUser] = useState(savedUser);
           <Link  className='link' to="/profile">
           <img className='profile-image-nav' src={profileImage}  style={{height:'40px' ,width:'40px',borderRadius:"50%",alignSelf:"center"}} alt=''></img>
 
-            <span>{!user?'loading...':user.displayName}</span>
+            <span>{!user?'loading...':userName}</span>
             
             </Link>
         </Col>

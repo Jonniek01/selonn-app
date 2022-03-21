@@ -9,16 +9,16 @@ import { Button } from 'react-bootstrap'
   // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
   // }
 
-function SellerProduct() {
+function SellerProduct(loading,products) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   let user = JSON.parse(localStorage.getItem('_user'));
 
-// useEffect(async ()=>{
-//   const products = await getProducts();
-//   setProducts(products)
-//   setLoading(false)
-// },[])
+useEffect(async ()=>{
+  const products = await getProducts();
+  setProducts(products)
+  setLoading(false)
+},[])
 
 function setId(){
  const id=user.id;

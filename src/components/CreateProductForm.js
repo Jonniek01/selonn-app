@@ -9,7 +9,7 @@ export default class CreateProductForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.responseRef = React.createRef();
     this.state={
-      user: JSON.parse(localStorage.getItem('_user')),
+      user: JSON.parse(localStorage.getItem('_user'))[0],
       message:""
       
     }
@@ -26,9 +26,11 @@ handleSubmit(event){
       form.reset();
 
     }
-  }).catch(err=>  this.setState(message=>message=err)
-  )
-  this.state.message="Product created succesfully"
+  }).catch(err=>  console.log(err))
+  console.log("created")
+  console.log(data)
+
+  this.state.message=data.productName+" created succesfully"
   this.setState(message=>message)
 
 
@@ -42,7 +44,7 @@ handleSubmit(event){
       <div className='name-price'>
 
     <Form.Group className="mb-3 " >
-    <Form.Control type="hidden" value={this.state.user.uid} name="userId"/>
+    <Form.Control type="hidden" value={this.state.user.id} name="userId"/>
     <Form.Control type="hidden" value="1" name="available"/>
     <Form.Label>Product Name</Form.Label>
     <Form.Control name="productName" type="text" placeholder="Product Name" required/>

@@ -67,7 +67,7 @@ import axios from 'axios'
 </span>
     </div>
     <div className='seller-product-cards'>
-      {SellerProduct(products)}
+      {/* {SellerProduct(loading,products)} */}
     </div>
     </div>
 
