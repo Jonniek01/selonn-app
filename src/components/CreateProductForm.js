@@ -9,10 +9,12 @@ export default class CreateProductForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.responseRef = React.createRef();
     this.state={
-      user: JSON.parse(localStorage.getItem('_user')),
+      user: JSON.parse(localStorage.getItem('_user'))[0],
+      message:""
       
     }
   }
+
 // Form submitting logic, prevent default page refresh 
 handleSubmit(event){
   event.preventDefault();
@@ -21,19 +23,28 @@ handleSubmit(event){
   let data = Object.fromEntries(fd.entries());
   axios.post(`/products`,data).then(({data})=>{
     if(data.status == true){
-      form.reset;
+      form.reset();
+
     }
-  }).catch(err=>console.log(err))
+  }).catch(err=>  console.log(err))
+  console.log("created")
+  console.log(data)
+
+  this.state.message=data.productName+" created succesfully"
+  this.setState(message=>message)
+
+
 }
   render() {
     return (
       <div>        
     <Form className='form-product' onSubmit={this.handleSubmit}>
+      <div className='message' style={{color:'Green'}}>{this.state.message}</div>
       <div className='serverResponse' ref={this.responseRef}></div>
       <div className='name-price'>
 
     <Form.Group className="mb-3 " >
-    <Form.Control type="hidden" value={this.state.user.uid} name="userId"/>
+    <Form.Control type="hidden" value={this.state.user.id} name="userId"/>
     <Form.Control type="hidden" value="1" name="available"/>
     <Form.Label>Product Name</Form.Label>
     <Form.Control name="productName" type="text" placeholder="Product Name" required/>

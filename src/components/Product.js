@@ -14,7 +14,7 @@ function Product(userId,search) {
         useEffect(async ()=>{
           const products = await getProducts();
           setProducts(products)
-          setLoading(false)
+          // setLoading(false)
         },[])
 
         function setId(){

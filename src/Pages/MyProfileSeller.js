@@ -11,7 +11,6 @@ import CreateProductForm from '../components/CreateProductForm'
 import SellerProduct from '../components/SellerProduct';
 import { Container, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
-/*eslint-disable no-undef*/
 
  function MyProfileSeller({userId,clat,clong}) {
   const [show, setShow] = useState(false);
@@ -68,7 +67,7 @@ import axios from 'axios'
 </span>
     </div>
     <div className='seller-product-cards'>
-      {/* {SellerProduct(products)} */}
+      {/* {SellerProduct(loading,products)} */}
     </div>
     </div>
 

@@ -35,6 +35,7 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
         password: loginPassword
       })
         if(data.status == true){
+          localStorage.setItem('_user',JSON.stringify(data.data));
           console.log("successful login",data)
           Emitter.emit("loginSuccess", data);
         }else{
