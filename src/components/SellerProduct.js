@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap'
   // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
   // }
 
-function SellerProduct(loading,products) {
+function SellerProduct() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   let user = JSON.parse(localStorage.getItem('_user'));
