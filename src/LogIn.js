@@ -25,7 +25,8 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
       if(currentuser){
         //notify user login success and store user in localstorage.
         Emitter.emit("loginSuccess", currentuser);
-        localStorage.setItem('_user',JSON.stringify(currentuser));
+        const {uid, email, displayName, phoneNumber,photoURL } = currentuser;
+        localStorage.setItem('_user',JSON.stringify({uid, id:uid, email,displayName,phoneNumber,photoURL}));
       }
     });
     const normalLogin = async ()=>{
@@ -35,8 +36,9 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
         password: loginPassword
       })
         if(data.status == true){
-          localStorage.setItem('_user',JSON.stringify(data.data));
-          console.log("successful login",data)
+          let user = data.data[0];
+          localStorage.setItem('_user',JSON.stringify(user));
+          console.log(" now user",user)
           Emitter.emit("loginSuccess", data);
         }else{
           console.log("error validating credentials",data)

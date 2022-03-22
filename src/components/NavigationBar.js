@@ -12,19 +12,12 @@ import profileImage from '../Images/me.jpg'
 
 
 function NavigationBar() {
-let savedUser = JSON.parse(localStorage.getItem('_user'))[0];
-const [user,setUser] = useState(savedUser);
-
+let savedUser = JSON.parse(localStorage.getItem('_user'));
+console.log("this is the user", savedUser);
 const[name,setName]=useState('Name')
-let userName=()=>{
-  if(user.fixedLatitude===undefined){
-    setName(user.displayName)
-  }
-  else{
-    setName(user.username)
-  }
-  return name;
-}
+let userName=()=>(savedUser.fixedLatitude===undefined)?savedUser.displayName:savedUser.username; 
+
+
 
 
 
@@ -59,7 +52,7 @@ let userName=()=>{
           <Link  className='link' to="/profile">
           <img className='profile-image-nav' src={profileImage}  style={{height:'40px' ,width:'40px',borderRadius:"50%",alignSelf:"center"}} alt=''></img>
 
-            <span>{!user?'loading...':userName}</span>
+            <span>{!savedUser?'loading...':userName()}</span>
             
             </Link>
         </Col>
