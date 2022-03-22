@@ -86,7 +86,7 @@ import axios from 'axios'
         </Modal.Header>
         <Modal.Body>
 
-          <UpdateSellerForm clat={clat} clong={clong}/>
+          <UpdateSellerForm clat={clat} clong={clong} user={seller}/>
 
         </Modal.Body>
       </Modal>

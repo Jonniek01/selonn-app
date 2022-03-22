@@ -1,5 +1,5 @@
 const {addUser,getUser, getUsers,updateUser, deleteUser} =require('../controllers/UserController');
-const { getUserProducts } = require('../controllers/ProductController');
+const { getUserProducts, getUserProduct } = require('../controllers/ProductController');
 const express = require('express');
 const router = express.Router();
 let id,message;
@@ -35,8 +35,16 @@ router.delete('/:id', async (req,res)=>{
 
 /**Specific resources routes */
 router.get('/:id/products', async (req, res)=>{
-    id =req.params.id,
+    id =req.params.id;
     message = await getUserProducts(id);
+    res.json(message);
+})
+
+router.get('/:userId/products/:productId', async (req, res)=>{
+    const userId = req.params.userId;
+    const productId = req.params.productId;
+
+    message = await getUserProduct(userId,productId);
     res.json(message);
 })
 

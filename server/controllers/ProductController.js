@@ -1,8 +1,8 @@
 const {
-    collection, doc, setDoc, addDoc, getDocs, query, where, updateDoc,deleteDoc
+    collection, doc, setDoc, addDoc, getDocs, query, where, documentId, updateDoc,deleteDoc
     } = require('firebase/firestore');
+const { getUser } = require('./UserController');
 const {app,db, auth} = require('../firebase/config');
-
 const collectionName="products";
 const itemName="Product";
 
@@ -34,15 +34,15 @@ const itemName="Product";
 
     //single product
     async function getProduct(id){
-        let data = [];
-        const q = query(collection(db, "products"), where("id", "==", id));
+        let data={};
+        const q = query(collection(db, "products"), where(documentId(), "==", id));
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            data.push({
+            data={
                 id:doc.id,
                 ...doc.data()
-                })
+                }
         });
 
         return data;
@@ -68,7 +68,20 @@ const itemName="Product";
         }
     }
 
-/** User Products */
+
+/**Collectionn based routes */
+async function getUserProduct(userId, productId){
+    let data = [];
+    const q = query(collection(db, 'products'), where(documentId(), '==', productId), where('userId', '==', userId))
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(doc=>{
+        data.push({
+            id: doc.id,
+            ...doc.data()
+        })
+    })
+    return data
+}
 async function getUserProducts(userId){
     let data = [];
         const q = query(collection(db, "products"), where("userId", "==", userId));
@@ -84,6 +97,11 @@ async function getUserProducts(userId){
         return data;
 }
 
+async function getProductUser(productId){
+    const {userId} = await getProduct(productId);
+    let data = await getUser(userId)
+    return data;
+}
 module.exports={
-    addProduct, getProduct, getProducts,updateProduct,deleteProduct, getUserProducts
+    addProduct, getProduct, getProducts,updateProduct,deleteProduct, getUserProducts,getUserProduct,getProductUser
 }

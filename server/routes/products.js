@@ -1,8 +1,13 @@
-const {addProduct,getProduct, getProducts, updateProduct, deleteProduct} = require('../controllers/ProductController');
-
+const {addProduct,getProduct, getProductUser, getProducts, updateProduct, deleteProduct} = require('../controllers/ProductController');
+const { getUser } = require('../controllers/UserController')
 const express = require('express');
 const router = express.Router();
+const sellerRouter = express.Router({mergeParams:true})
 let id,message;
+/**My middlewares */
+router.use('/:id/seller', sellerRouter);
+router.use('/:id/sellers', require('./users'));
+
 /**GET */
 router.get('/', async (req,res)=>{
     message = await getProducts();
@@ -32,5 +37,12 @@ router.delete('/:id', async (req,res)=>{
     res.json(message);
 })
 
+/**Handling my middlewares */
+
+sellerRouter.get('/',async (req, res)=>{
+    const productId = req.params.id
+    message = await getProductUser(productId)
+    res.send(message)
+})
 
 module.exports=router;

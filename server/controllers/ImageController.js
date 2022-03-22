@@ -1,5 +1,5 @@
 const {
-collection, doc, setDoc, addDoc, getDocs, query, where, updateDoc,deleteDoc
+collection, doc, setDoc, addDoc, getDocs, query, where, updateDoc,deleteDoc, documentId
 } = require('firebase/firestore');
 const {app,db, auth} = require('../firebase/config');
 
@@ -20,7 +20,7 @@ const itemName="Image";
     async function getImages(param=null){
         let data = [];
         if(param != null && typeof param == 'object'){
-            const q = query(collection(db, collectionName), where("id", "==", param.id) ,where("type", "==",param.type));
+            const q = query(collection(db, collectionName), where(documentId(), "==", param.id) ,where("type", "==",param.type));
 
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
@@ -46,15 +46,15 @@ const itemName="Image";
 
     //single image
     async function getImage(id){
-        let data = [];
-        const q = query(collection(db, collectionName), where("id", "==", id));
+        let data={};
+        const q = query(collection(db, collectionName), where(documentId(), "==", id));
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            data.push({
+            data={
                 id:doc.id,
                 ...doc.data()
-                })
+                }
         });
         
         return data;
