@@ -35,8 +35,15 @@
 .buyer-contents{
         z-index: 999;
 }
+.buyer-name{
+    display: none;
+}
+
 
 @media only screen and (max-width: 780px) {
+    .buyer-name{
+        display: block;
+    }
     .buyer-profile{
         margin-right: 6vw;
         width: 90vw;
@@ -74,3 +81,4 @@
 
 
 }
+

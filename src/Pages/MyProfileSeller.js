@@ -3,7 +3,6 @@ import '../sass/MyProfileSeller.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 import { getProducts, getUserProducts } from '../data/Products'
-import { getUser } from '../data/Users'
 import { useState, useEffect } from 'react'
 import UpdateSellerForm from '../components/UpdateForm'
 import UpdateProductForm from '../components/UpdateProductForm'
@@ -12,7 +11,9 @@ import SellerProduct from '../components/SellerProduct';
 import { Container, Modal, Button } from 'react-bootstrap'
 import axios from 'axios'
 
- function MyProfileSeller({userId,clat,clong}) {
+ function MyProfileSeller({clat,clong}) {
+  const User = JSON.parse(localStorage.getItem('_user'));
+
   const [show, setShow] = useState(false);
   const [showp, setShowp] = useState(false);
   const handleClosep = () => setShowp(false);
@@ -22,14 +23,11 @@ import axios from 'axios'
   const handleShowpedit = () => setShowpedit(true);
 
   const [loading, setLoading] = useState(true);
-  const [seller, setSeller] = useState({})
   const [products,setProducts]=useState([]);
 
   useEffect(()=>{
     async function getData(){
-        let seller =  await getUser(userId);
-        setSeller(seller);
-        let userProducts =  await getUserProducts(userId);
+        let userProducts =  await getUserProducts(User.id);
         setProducts(userProducts);
         setLoading(false);
     }
@@ -45,10 +43,10 @@ import axios from 'axios'
         <div className='contents'>
           <div className='s-brand'><h1>Brand</h1></div>
           <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>LocationName<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
-          <span>userId:{userId}</span><span>lat:{clat}</span><span>long:{clong}</span>
+          <span>User Id:{User.id}</span><span>lat:{clat}</span><span>long:{clong}</span>
 
           <p className='description'>
-              {seller.description}
+              {User.description}
           </p>
             
         </div>
@@ -86,7 +84,7 @@ import axios from 'axios'
         </Modal.Header>
         <Modal.Body>
 
-          <UpdateSellerForm clat={clat} clong={clong} user={seller}/>
+          <UpdateSellerForm clat={clat} clong={clong} user={User}/>
 
         </Modal.Body>
       </Modal>
