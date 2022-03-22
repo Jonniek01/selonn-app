@@ -1,5 +1,5 @@
 const {
-    collection, doc, setDoc, addDoc, getDocs, query, where, updateDoc,deleteDoc
+    collection, doc, setDoc, addDoc, getDocs, query, where,documentId, updateDoc,deleteDoc
     } = require('firebase/firestore');
 const {app,db, auth} = require('../firebase/config');
 
@@ -33,15 +33,16 @@ const itemName="User";
 
     //single user
     async function getUser(id){
-        let data = [];
-        const q = query(collection(db, "users"), where("id", "==", id));
+        let data={};
+        const q = query(collection(db, "users"), where(documentId(), "==", "7gphG3XovRTAumgvChaB"));
 
         const querySnapshot = await getDocs(q);
+
         querySnapshot.forEach((doc) => {
-            data.push({
+            data = {
                 id:doc.id,
                 ...doc.data()
-                })
+                }
         });
 
         return data;
