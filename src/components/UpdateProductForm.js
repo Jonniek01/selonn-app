@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button ,Form} from 'react-bootstrap'
-import axios from 'axios'
+import axios from '../axios'
 
 /*eslint-disable */
 export default class UpdateProductForm extends Component {
@@ -19,9 +19,8 @@ handleSubmit(event){
   console.log("Attempting to update product information")
   let pi=1
 
-  axios.put(`${SERVER_URL}/products/${pid}`,data).then(res=>{
-    console.log("Finished updating prodct informaion")
-    alert(res);
+  axios.put(`products/${pid}`,data).then(res=>{
+    console.log("Finished updating product informaion")
   }).catch(err=>console.log(err))
 
 }

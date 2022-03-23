@@ -2,7 +2,7 @@ import {React, useEffect, useState} from 'react'
 import Emitter from './emitter';
 import { Link, useSearchParams } from 'react-router-dom'
 import { Container,Form ,Button} from 'react-bootstrap'
-import axios from 'axios';
+import axios from './axios';
 import { getAuth, signInWithPopup, GoogleAuthProvider,
 createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut
  } from "firebase/auth";
@@ -23,23 +23,31 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
 
     onAuthStateChanged(auth, (currentuser)=>{
       if(currentuser){
-        //notify user login success and store user in localstorage.
+        //notify main app about successful login
         Emitter.emit("loginSuccess", currentuser);
         const {uid, email, displayName, phoneNumber,photoURL } = currentuser;
-        localStorage.setItem('_user',JSON.stringify({uid, id:uid, email,displayName,phoneNumber,photoURL}));
+        const user = {uid, id:uid, email,displayName,phoneNumber,photoURL }
+        localStorage.setItem('_user',JSON.stringify(user));
+        //add this for session management
+        sessionStorage.setItem('_user', JSON.stringify(user))
       }
     });
+
     const normalLogin = async ()=>{
       try{
-      const {data} = await axios.post(`${SERVER_URL}/auth/signin`,{
+      const {data} = await axios.post(`/auth/signin`,{
         email:loginEmail,
         password: loginPassword
       })
         if(data.status == true){
-          let user = data.data[0];
-          localStorage.setItem('_user',JSON.stringify(user));
-          console.log(" now user",user)
-          Emitter.emit("loginSuccess", data);
+          let user = data.data;
+          //notify main app on successful login
+          localStorage.setItem('_user',JSON.stringify(user)); 
+
+          //add this for session management
+          sessionStorage.setItem('_user', JSON.stringify(user));
+          Emitter.emit("loginSuccess", user);
+
         }else{
           console.log("error validating credentials",data)
         }
@@ -51,6 +59,10 @@ import { collection, doc, setDoc, getDocs, query, where } from "firebase/firesto
 
     const logout = async ()=>{
       await signOut(auth)
+      //remove localstorage and sessonStorage data
+      localStorage.removeItem('_user');
+      sessionStorage.removeItem('_user');
+      
       Emitter.emit("logoutSucess");
       console.log("signout success")
     }

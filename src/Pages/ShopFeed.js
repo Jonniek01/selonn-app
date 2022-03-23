@@ -26,7 +26,7 @@ useEffect(async ()=>{
 },[])
 
 function distance(lat1, lon1, lat2, lon2) {
-  console.log(lat1,lon1,lat2,lon2)
+  // console.log(lat1,lon1,lat2,lon2)
   // console.log('curr long:'+clong+" curr lat: "+clat)
   // console.log("lat 1"+lat1+"Longitude 1"+lon1)
   var R = 6371; // Radius of the earth in km
