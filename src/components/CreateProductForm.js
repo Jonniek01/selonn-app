@@ -9,7 +9,7 @@ export default class CreateProductForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.responseRef = React.createRef();
     this.state={
-      user: JSON.parse(localStorage.getItem('_user'))[0],
+      user: JSON.parse(localStorage.getItem('_user')),
       message:""
       
     }

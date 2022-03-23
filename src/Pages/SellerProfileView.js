@@ -12,11 +12,9 @@ import { Link } from 'react-router-dom'
 
 
 function sellerProfileView(sellerId) {
-  // const [products,setProducts]=useState(Products)
-  // const [user,setUser]=useState(User)
   const User = JSON.parse(localStorage.getItem('_user'));
   const userId=User.userId;
-  // const product=Products.filter(product=>product.userId===userId).map((product)=>{
+  // const product=Products.map((product)=>{
   //   return<div key={product.productId}>
   //         <div className='product-card-seller'>
   //       <div className='name-image'>

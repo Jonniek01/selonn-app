@@ -1,5 +1,5 @@
 import React from 'react'
-import { getProducts}   from '../data/Products'
+import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -8,28 +8,26 @@ import { Link } from 'react-router-dom'
   // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
   // }
 
-function Product(userId,search) {
+function Product(sellerId,search) {
           const [products, setProducts] = useState([]);
           const [loading, setLoading] = useState(true);
         useEffect(async ()=>{
-          const products = await getProducts();
-          setProducts(products)
-          // setLoading(false)
+          const products = await getUserProducts(sellerId);
+          console.log("this are this seller's products"+JSON.parse(products))
+
+          return products
+          
+          
         },[])
 
-        function setId(){
-         const id=userId;
-         return id
-        }
-
   return (
-    <div key={loading?'':products[0].id} className='product-card'>
+    <div key={!products[0]?'':products[0].id} className='product-card'>
         <div className='name-image'>
-            <div className='product-name'>{loading?'loading...':products[0].name}</div>
+            <div className='product-name'>{!products[0]?'loading...':"productname"}</div>
             <div className='product-image'>Image</div>
         </div>
         <div className='price-available'>
-            <div className='price'><p>{loading?'loading':products[0].price}</p></div>
+            <div className='price'><p>{!products[0]?'loading':"price"}</p></div>
             <Link  className='' to="/seller">
 
             <button  className='enquire'>Enquire</button>

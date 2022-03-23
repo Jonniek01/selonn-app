@@ -8,6 +8,7 @@ import { faLocation } from '@fortawesome/free-solid-svg-icons'
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import '../sass/shopFeed.scss'
+
 import { useState, useEffect } from 'react'
 
 
@@ -40,7 +41,7 @@ function distance(lat1, lon1, lat2, lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
   d=parseFloat(d);
-  return d;
+  return d.toFixed(3);
 }
 
 function deg2rad(deg) {
@@ -60,16 +61,16 @@ const FeedCard=sellers.map((seller)=>{
  
 
 
- return (<div key={seller.id} className="feed-ca(a, b) => parseFloat(a.latitudeFixed) - parseFloat(b.latitudeFixed)rd">
+ return (<div key={seller.id} className="feed-card">
    <div className='feedcard-header'>
    <span className='brand'>{seller.username}</span>
-   <span className='distance'>distance: {distance(lat1,lon1,lat2,lon2)} km</span>
-   <span className='location-name'>Location Name<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
+   <span className='distance' style={{color:"green"}}> {distance(lat1,lon1,lat2,lon2)} km</span>
+   <span className='location-name'>{seller.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
 
 
    </div>
 
-   <Product userId={seller.userId} search={search}/>
+   <Product sellerId={seller.userId} search={search}/>
 
    
    </div>)

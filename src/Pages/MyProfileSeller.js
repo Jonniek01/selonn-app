@@ -9,7 +9,6 @@ import UpdateProductForm from '../components/UpdateProductForm'
 import CreateProductForm from '../components/CreateProductForm'
 import SellerProduct from '../components/SellerProduct';
 import { Container, Modal, Button } from 'react-bootstrap'
-import axios from 'axios'
 
  function MyProfileSeller({clat,clong}) {
   const User = JSON.parse(localStorage.getItem('_user'));
@@ -29,6 +28,8 @@ import axios from 'axios'
     async function getData(){
         let userProducts =  await getUserProducts(User.id);
         setProducts(userProducts);
+        // console.log("this are this seller's products",userProducts)
+
         setLoading(false);
     }
     getData();

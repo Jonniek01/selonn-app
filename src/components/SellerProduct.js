@@ -1,29 +1,19 @@
 import React from 'react'
-import  { getProducts }  from '../data/Products'
+import  { getUserProducts }  from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-
-  // const [product,setProducts]=useState(Products)
-  // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
-  // }
 
 function SellerProduct() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   let user = JSON.parse(localStorage.getItem('_user'));
 
-useEffect(async ()=>{
-  const products = await getProducts();
-  setProducts(products)
-  setLoading(false)
-},[])
-
-function setId(){
- const id=user.id;
- return id
-}
+// useEffect(async ()=>{
+//   const products = await getProducts();
+//   setProducts(products)
+//   setLoading(false)
+// },[])
 
 const Productz= products.map(product=>(
 
