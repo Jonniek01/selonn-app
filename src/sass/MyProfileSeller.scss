@@ -88,22 +88,26 @@
     
 
 }
-.b-available{
-    color: black;
-    border-radius: 10px;
-    width: 80%;
-    margin-bottom: 2px;
 
+.profile-product{
+    margin: 2px;
+    padding: 1%;
+    border-radius: 2px;
+    background-color: rgba(32, 212, 224, 0.219);
+    .name-price ,.image-description{
+        display: grid;
+        grid-template-columns: 60% auto;
+
+    }
 }
-.b-edit{
-    border-radius: 10px;
-    color: black;
-    font-weight: 900;
-    width: 80%;
-
-
-
+.product-image{
+    height: 10vh;
+    max-width: 8vw;
+    background-color: rgb(230, 201, 227);
+    text-align: center;
 }
+
+
 
 @media only screen and (max-width: 780px) {
     .seller-product-cards{

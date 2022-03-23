@@ -26,7 +26,7 @@ handleSubmit(event){
 }
   render() {
     return (
-      <div>        <Form className='form-product'onSubmit={this.handleSubmit}>
+      <div>        <Form className='form-product'onSubmit={this.handleSubmit} >
       <div className='name-price'>
 
 
@@ -38,15 +38,6 @@ handleSubmit(event){
     <Form.Label>Price</Form.Label>
     <Form.Control name="price" type="number" placeholder="Price" />
     </Form.Group>
-
-    </div>
-    <div className='product-image'>
-    <Form.Group className="mb-3 " >
-    <Form.Label>Product image </Form.Label>
-    <Form.Control type="file" placeholder="Upload Image" />
-    </Form.Group>
-
-
 
     </div>
     <div className='product-description'>

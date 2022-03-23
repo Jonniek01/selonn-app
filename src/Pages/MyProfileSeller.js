@@ -29,13 +29,39 @@ import { Container, Modal, Button } from 'react-bootstrap'
     async function getData(){
         let userProducts =  await getUserProducts(User.id);
         setProducts(userProducts);
-        // console.log("this are this seller's products",userProducts)
-
+        console.log("this are this seller's products",products)
         setLoading(false);
+
+        return products
+
     }
     getData();
 
   },[])
+
+  const profileProducts=products.map(
+    (product)=>{
+      return    <div key={product.id} className='profile-product'>
+      <div className='name-price'>
+          <div className='product-name'>{product.productName}</div>
+          <div className='price'><p>Ksh.{product.price}</p></div>
+
+      </div>
+      <div className='image-description'>
+      <div className='product-image'>Image</div>
+      <div>{product.description}</div>
+    
+
+
+      </div>
+      <div className='edit-product'>
+
+          <button  className='enquire'onClick={handleShowpedit}>Edit Product</button>
+      </div>
+  </div>
+
+    }
+  )
 
   return (
     <Container>
@@ -67,7 +93,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
 </span>
     </div>
     <div className='seller-product-cards'>
-      {/* {SellerProduct(loading,products)} */}
+      {loading?"loading products...":profileProducts}
     </div>
     </div>
 
