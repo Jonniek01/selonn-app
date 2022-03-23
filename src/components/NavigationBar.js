@@ -16,7 +16,7 @@ function NavigationBar() {
 let savedUser = JSON.parse(sessionStorage.getItem('_user'));
 // console.log("this is the user", savedUser);
 const[name,setName]=useState('Name')
-let userName=()=>(savedUser.fixedLatitude===undefined)?savedUser.displayName:savedUser.username; 
+let userName=()=>(savedUser.fixedLatitude===undefined)?savedUser.displayName:savedUser.firstName; 
 
 
 
