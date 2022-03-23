@@ -6,7 +6,9 @@ import { useState } from 'react'
 import '../sass/MyProfileBuyer.scss'
 import UpdateBuyerForm from '../components/UpdateForm';
 
-function MyProfileBuyer({userId,clat,clong}) {
+function MyProfileBuyer({clat,clong}) {
+  const User = JSON.parse(localStorage.getItem('_user'));
+
 
   const [show, setShow] = useState(false);
 
@@ -20,13 +22,13 @@ function MyProfileBuyer({userId,clat,clong}) {
     <div className='buyer-profile-head'>
         <div className='profile-image'><p>Profile Image</p></div>
         <div className='buyer-contents'>
-          <h1>User Name</h1>
+          <h1 className='buyer-name'>{User.displayName}</h1>
           <Button variant="primary" onClick={handleShow}>
         Edit account
       </Button>          
 
         </div>
-        <span>userId:{userId}</span><span>lat:{clat}</span><span>long:{clong}</span>
+        <span>userId:{User.id}</span><span>lat:{clat}</span><span>long:{clong}</span>
 
 
 

@@ -34,7 +34,7 @@ function App() {
       <div className='mobile-head'><p>selonn</p></div>
     <Routes>
     <Route path='/' element={<ShopFeed clat={clat} clong={clong}/>} exact/>
-    <Route path='/profile' element= {1===2-1?<MyProfileSeller userId={User.id} clat={clat} clong={clong}/>:<MyProfileBuyer userId={User.id} clat={clat} clong={clong}/>} />
+    <Route path='/profile' element= {User.fixedLatitude!=undefined?<MyProfileSeller userId={User.id} clat={clat} clong={clong}/>:<MyProfileBuyer userId={User.id} clat={clat} clong={clong}/>} />
 
 
     <Route path='/about' element={<About/>} exact/>
