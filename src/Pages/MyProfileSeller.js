@@ -11,7 +11,7 @@ import SellerProduct from '../components/SellerProduct';
 import { Container, Modal, Button } from 'react-bootstrap'
 
  function MyProfileSeller({clat,clong}) {
-  const User = JSON.parse(localStorage.getItem('_user'));
+  const User = JSON.parse(sessionStorage.getItem('_user'));
 
   const [show, setShow] = useState(false);
   const [showp, setShowp] = useState(false);
@@ -22,6 +22,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
   const handleShowpedit = () => setShowpedit(true);
 
   const [loading, setLoading] = useState(true);
+  const [seller, setSeller] = useState(sessionStorage.getItem('_user'))
   const [products,setProducts]=useState([]);
 
   useEffect(()=>{

@@ -4,16 +4,30 @@ import { useState } from 'react';
 import axios from '../axios';
 
 /*eslint-disable */
-function UpdateForm({clat,clong}) {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('_user')));
+function UpdateForm({clat,clong, user}) {
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [email, setEmail] = useState(user.email);
+  const [phone, setPhone] = useState(user.phone);
+  const [username, setUsername] = useState(user.displayName || user.username);
+  const [location, setLocation] = useState(user.location);
+  const [description, setDescription] = useState(user.description);
+  const [password, setPassword] = useState(user.password);
+  const [cPassword, setCPassword] = useState(user.password);
+
  let handleSubmit=(event)=>{
     event.preventDefault();
     let fd = new FormData(event.target);
     let data = Object.fromEntries(fd.entries());
     
     //update user details
-    axios.put(`/users/${user.uid}`,data).then(res=>{
-      alert("Finished updating seller information");
+    axios.put(`/users/${user.id}`,data).then(({data})=>{
+      if(data.success == true){
+        alert("Your information was updated successfully")
+        //update login data
+        sessionStorage.setItem('_user', JSON.stringify(data.data))
+        localStorage.setItem('_user', JSON.stringify(data.data))
+      }
     }).catch(err=>console.log(err))
     
   }
@@ -25,11 +39,11 @@ function UpdateForm({clat,clong}) {
 
 <Form.Group className="mb-3 " >
 <Form.Label>First Name</Form.Label>
-<Form.Control name="firstName" type="text" value={user.firstName || ''} placeholder="First Name" />
+<Form.Control name="firstName" type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="First Name" />
 </Form.Group>
   <Form.Group className="mb-3 " controlId="">
-<Form.Label>Second Name</Form.Label>
-<Form.Control name="secondName" type="text" value={user.lastName || ''} placeholder="Second Name"/>
+<Form.Label>Last Name</Form.Label>
+<Form.Control name="lastName" type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Second Name"/>
 
 </Form.Group>
 </div>
@@ -42,11 +56,11 @@ function UpdateForm({clat,clong}) {
 
 <Form.Group className="mb-3 " >
 <Form.Label>Email address</Form.Label>
-<Form.Control name="email" type="email" value={user.email || ''} placeholder="Enter email" />
+<Form.Control name="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
 </Form.Group>
 <Form.Group className="mb-3 " >  
 <Form.Label>Phone Number</Form.Label>
-<Form.Control name="tell" type="tell" value={user.phone || ''} placeholder="+254" />
+<Form.Control name="phone" type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+254" />
 </Form.Group>
 </div>
 
@@ -59,7 +73,7 @@ As just a buyer, We never share your contact information with anyone. As a selle
 <div className='brand-image'>
 <Form.Group className="mb-3 " >
 <Form.Label>User Name </Form.Label>
-<Form.Control name="userName" type="text" value={user.username || ''} placeholder="Enter User Name" />
+<Form.Control name="username" type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Enter User Name" />
 </Form.Group>
 </div>
 
@@ -67,9 +81,9 @@ As just a buyer, We never share your contact information with anyone. As a selle
   <div className='location-up-div'>
     <p>Make sure you are in your bussiness location when submitting this form in order to set up your correct bussiness location</p>
     <Form.Group className="mb-3 " >
-          <Form.Control type="text" name="location" placeholder="Location Name" />
-    <Form.Control name="fixedLatitude" type="hidden" value={Number(clat)} />
-    <Form.Control name="fixedLongitude" type="hidden" value={Number(clong)} />
+          <Form.Control type="text" name="location" value={location} placeholder="Location Name" onChange={e => setLocation(e.target.value)} />
+    <Form.Control name="fixedLatitude" type="hidden" value={Number(clat)} readOnly/>
+    <Form.Control name="fixedLongitude" type="hidden" value={Number(clong)} readOnly/>
 
     </Form.Group>
 
@@ -78,7 +92,7 @@ As just a buyer, We never share your contact information with anyone. As a selle
 <div className='description'>
 <Form.Group className="mb-3 " >
 <Form.Label>Bussiness description </Form.Label>
-<Form.Control name="description" as="textarea" rows={3} value={user.description || ''} placeholder="Your Bussiness Description" />
+<Form.Control name="description" as="textarea" rows={3} value={description} onChange={e => setDescription(e.target.value) } placeholder="Your Bussiness Description" />
 </Form.Group>
 
 
@@ -110,13 +124,13 @@ As just a buyer, We never share your contact information with anyone. As a selle
 
 <Form.Group className="mb-3 " >
 <Form.Label>Password</Form.Label>
-<Form.Control name="password" type="password" placeholder="Password" />
+<Form.Control name="password" type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
 </Form.Group>
 
 <Form.Group className="mb-3 " >
 
 <Form.Label>Confirm Password</Form.Label>
-<Form.Control name="cPassword" type="password" placeholder="Password" />
+<Form.Control value={cPassword} type="password" placeholder="Password" onChange={e => setCPassword(e.target.value)}/>
 </Form.Group>
 </div>
 

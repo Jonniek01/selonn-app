@@ -12,8 +12,9 @@ import profileImage from '../Images/me.jpg'
 
 
 function NavigationBar() {
-let savedUser = JSON.parse(localStorage.getItem('_user'));
-console.log("this is the user", savedUser);
+// let savedUser = JSON.parse(localStorage.getItem('_user'));
+let savedUser = JSON.parse(sessionStorage.getItem('_user'));
+// console.log("this is the user", savedUser);
 const[name,setName]=useState('Name')
 let userName=()=>(savedUser.fixedLatitude===undefined)?savedUser.displayName:savedUser.username; 
 

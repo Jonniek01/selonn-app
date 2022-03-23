@@ -14,7 +14,7 @@ function MyProfileBuyer({clat,clong}) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [user, setUser] = useState(sessionStorage.getItem('_user'));
 
   return (
     <Container>
@@ -47,7 +47,7 @@ function MyProfileBuyer({clat,clong}) {
           <Modal.Title>Update account</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UpdateBuyerForm/>
+          <UpdateBuyerForm user={user}/>
 
         </Modal.Body>
         <Modal.Footer>

@@ -50,13 +50,15 @@ const itemName="User";
     /**Update */
     async function updateUser(id,data){
         const productRef = doc(db, collectionName, id);
-
+           
         await updateDoc(productRef,data);
-
+        const user = await getUser(id);
         return {
             success:1,
-            message:`${itemName} information updated successfully`
+            message:`${itemName} information updated successfully`,
+            data: user
         }
+        
     }
     /**Delete */
     async function deleteUser(id){
@@ -69,7 +71,7 @@ const itemName="User";
     }
     /**Login */
     async function login(email,password){
-        let data = [];
+        let data={};
         const q = query(collection(db, "users"), where("email", "==", email), where("password", "==", password));
 
         const querySnapshot = await getDocs(q);
@@ -80,7 +82,7 @@ const itemName="User";
             }
         }else{
             querySnapshot.forEach((doc) => {
-                data.push({
+                data=({
                     id:doc.id,
                     ...doc.data()
                     })
