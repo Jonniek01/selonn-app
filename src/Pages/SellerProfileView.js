@@ -17,11 +17,14 @@ import {sId} from '../components/Product'
 
 function SellerProfileView() {
   // let id=sId();
-  let id="Kxv25dspeYQEmqcRo2tN"
+  let id=sId()
   const [seller, setSeller]=useState([]);
   const [loading,setLoading]=useState(true)
   useEffect(async ()=>{
     const sellerget = await getUser(id);
+    console.log("id of seller being enquired:",id)
+    console.log("seller being enquired :",sellerget)
+
 
     setSeller(sellerget)
 
@@ -33,7 +36,6 @@ function SellerProfileView() {
     return(<h1>Loading seller profile....</h1>)
   }
   else{
-    console.log("seller being enquired :",seller)
 
   
   return (
