@@ -5,7 +5,6 @@ import '../sass/SellerProfileView.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
-import  { getProducts }  from '../data/Products'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -14,28 +13,6 @@ import { Link } from 'react-router-dom'
 function sellerProfileView(sellerId) {
   const User = JSON.parse(localStorage.getItem('_user'));
   const userId=User.userId;
-  // const product=Products.map((product)=>{
-  //   return<div key={product.productId}>
-  //         <div className='product-card-seller'>
-  //       <div className='name-image'>
-  //           <div className='product-name'>{product.productName}</div>
-  //           <div className='product-image'>Image</div>
-  //       </div>
-  //       <div className='price-available'>
-  //           <div className='price'><p>{product.price} Ksh</p></div>
-  //           <span>
-  //           <p className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</p>
-  //           </span>
-            
-  //       </div>
-  //   </div>
-
-      
-      
-  //     </div>
-  // }
-
-  // )
   return (
     <Container>
       <div className='seller-profile'>

@@ -1,61 +1,65 @@
 import React from 'react'
-import  { getUserProducts }  from '../data/Products'
+import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
-import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-function SellerProduct() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  let user = JSON.parse(localStorage.getItem('_user'));
+function SellerProducts({sellerId,search}) {
+          const [loading, setLoading] = useState(true);
+          const [productz,setProducts]=useState([])
 
-// useEffect(async ()=>{
-//   const products = await getProducts();
-//   setProducts(products)
-//   setLoading(false)
-// },[])
+        useEffect(async ()=>{
+         const products = await getUserProducts(sellerId);
+          console.log("this are this seller's products at 0",products)   
+          setProducts(products)
 
-const Productz= products.map(product=>(
+                 setLoading(false)
 
-  <div key={product.id}>
-      <div className='product-card-seller'>
-    <div className='name-image'>
-        <div className='product-name'>{product.name}</div>
-        <div className='product-image'>Image</div>
-    </div>
-    <div className='price-available'>
-        <div className='price'><p>Ksh. {product.price}</p></div>
-        <span>
-        <button className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</button>
-        <Button variant="primary" >
-    Edit Product
-  </Button>
+
+          return products
+          
+          
+        },[])
 
 
 
-        </span>
-        
-    </div>
-</div>
-  </div>
 
 
-))
+        if(loading===true){
+          console.log("this are this seller's products at 1",productz)   
 
+          return(<div>Loading</div>)
 
-
-        if(!loading){
-          return(
-            <Productz/>
-          )
 
         }
-        else return(
-          <div><h4>Loading....</h4></div>
-        )
+
+        else{
+          console.log("this are this seller's products at 2",productz)   
+
+
+
+
+
+  return (
+    <div  className='product-card'>
+        <div className='name-image'>
+            <div className='product-name'>{productz[0].productName}</div>
+            <div className='product-image'>Image</div>
+        </div>
+        <div className='price-available'>
+            <div className='price'><p>Ksh: {productz[0].price}</p></div>
+            <Link  className='' to="/seller">
+
+            <button  className='enquire'>Enquire</button>
+            </Link>
+        </div>
+    </div>
+  )}
 
 }
 
-export default SellerProduct
+
+export default SellerProducts
+
 
 

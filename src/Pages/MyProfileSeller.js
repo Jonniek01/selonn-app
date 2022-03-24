@@ -70,8 +70,8 @@ import { Container, Modal, Button } from 'react-bootstrap'
         <div className='profile-image'><p>Profile Image</p></div>
         <div className='contents'>
           <div className='s-brand'><h1>{User.username}</h1></div>
-          <div className='s-distance-name'><div className='s-name'>{User.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
-          <span>User Id:{User.id}</span><span>lat:{clat}</span><span>long:{clong}</span>
+          <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>{User.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
+          <span>User Id:{User.id}</span><span>Current Latitude:{clat}</span><span>Current Longitude:{clong}</span>
 
           <p className='description'>
               {User.description}

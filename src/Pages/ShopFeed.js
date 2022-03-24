@@ -70,7 +70,7 @@ const FeedCard=sellers.map((seller)=>{
 
    </div>
 
-   <Product sellerId={seller.userId} search={search}/>
+   <Product sellerId={seller.id} search={search}/>
 
    
    </div>)

@@ -4,30 +4,51 @@ import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-  // const [product,setProducts]=useState(Products)
-  // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
-  // }
-
-function Product(sellerId,search) {
-          const [products, setProducts] = useState([]);
+function Product({sellerId,search}) {
           const [loading, setLoading] = useState(true);
+          const [productz,setProducts]=useState([])
+
+          // console.log("seller id :",sellerId)
         useEffect(async ()=>{
-          const products = await getUserProducts(sellerId);
-          console.log("this are this seller's products"+JSON.parse(products))
+         const products = await getUserProducts(sellerId);
+          console.log("this are this seller's products at 0",products)   
+          setProducts(products)
+
+                 setLoading(false)
+
 
           return products
           
           
         },[])
 
+
+
+
+
+        if(loading===true){
+          console.log("this are this seller's products at 1",productz)   
+
+          return(<div>Loading</div>)
+
+
+        }
+
+        else{
+          console.log("this are this seller's products at 2",productz)   
+
+
+
+
+
   return (
-    <div key={!products[0]?'':products[0].id} className='product-card'>
+    <div  className='product-card'>
         <div className='name-image'>
-            <div className='product-name'>{!products[0]?'loading...':"productname"}</div>
+            <div className='product-name'>{productz[0].productName}</div>
             <div className='product-image'>Image</div>
         </div>
         <div className='price-available'>
-            <div className='price'><p>{!products[0]?'loading':"price"}</p></div>
+            <div className='price'><p>Ksh. {productz[0].price}</p></div>
             <Link  className='' to="/seller">
 
             <button  className='enquire'>Enquire</button>
@@ -35,6 +56,9 @@ function Product(sellerId,search) {
         </div>
     </div>
   )}
+
+}
+
 
 export default Product
 
