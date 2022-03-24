@@ -34,7 +34,7 @@ const itemName="User";
     //single user
     async function getUser(id){
         let data={};
-        const q = query(collection(db, "users"), where(documentId(), "==", "7gphG3XovRTAumgvChaB"));
+        const q = query(collection(db, "users"), where(documentId(), "==", id));
 
         const querySnapshot = await getDocs(q);
 

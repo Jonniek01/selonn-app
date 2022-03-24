@@ -1,5 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+
+
 import '../sass/MyProfileSeller.scss'
 import '../sass/SellerProfileView.scss'
 import SellerProducts from '../components/SellerProduct'
@@ -16,7 +18,6 @@ import {sId} from '../components/Product'
 
 
 function SellerProfileView() {
-  // let id=sId();
   let id=sId()
   const [seller, setSeller]=useState([]);
   const [loading,setLoading]=useState(true)
@@ -50,16 +51,18 @@ function SellerProfileView() {
         <div className='profile-image'><p>Profile Image</p></div>
         <div className='contents'>
           <div className='s-brand'><h1>{seller.username}</h1></div>
-          <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>LocationName<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
-          <p className='description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convallis sem, quis egestas ante lacinia sed. Nunc luctus dui in arcu semper, vel mattis libero varius. Donec at ligula massa. Praesent convallis et justo et fringilla
-</p>
+          <div className='s-distance-name'><div className='s-name'>{seller.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div><div className='s-distance'>30km</div></div>
+          <div className='description'>
+            <h5>Description</h5>
+            <p>{seller.description}</p>
+            
+</div>
             
         </div>
 
 
     </div>
-    <div className='seller-product-cards'>
+    <div >
       <SellerProducts sellerId={id}/>
     </div>
     </div>

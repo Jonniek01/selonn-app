@@ -2,6 +2,10 @@ import React from 'react'
 import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
+import '../sass/MyProfileSeller.scss'
+
+import '../sass/SellerProfileView.scss'
+
 
 function SellerProducts({sellerId,search}) {
           const [loading, setLoading] = useState(true);
@@ -59,7 +63,7 @@ function SellerProducts({sellerId,search}) {
 
 
   return (
-    <div>
+    <div className='seller-product-cards'>
           {mappedProducts()}
 
 
