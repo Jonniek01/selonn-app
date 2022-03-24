@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { getUser, getUsers }  from '../data/Users'
-import Product from '../components/Product'
+import {Product,sId} from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 

@@ -3,15 +3,15 @@ import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+let id=""
 
-function Product({sellerId,search}) {
+export const Product=({sellerId,search})=> {
           const [loading, setLoading] = useState(true);
           const [productz,setProducts]=useState([])
 
           // console.log("seller id :",sellerId)
         useEffect(async ()=>{
          const products = await getUserProducts(sellerId);
-          console.log("this are this seller's products at 0",products)   
           setProducts(products)
 
                  setLoading(false)
@@ -27,7 +27,6 @@ function Product({sellerId,search}) {
 
 
         if(loading===true){
-          console.log("this are this seller's products at 1",productz)   
 
           return(<div>Loading</div>)
 
@@ -35,7 +34,6 @@ function Product({sellerId,search}) {
         }
 
         else{
-          console.log("this are this seller's products at 2",productz)   
 
 
 
@@ -51,7 +49,7 @@ function Product({sellerId,search}) {
             <div className='price'><p>Ksh. {productz[0].price}</p></div>
             <Link  className='' to="/seller">
 
-            <button  className='enquire'>Enquire</button>
+            <button onClick={()=>{id=productz[0].userId}}  className='enquire'>Enquire</button>
             </Link>
         </div>
     </div>
@@ -59,7 +57,9 @@ function Product({sellerId,search}) {
 
 }
 
+export const sId=()=> {
+  return id
+}
 
-export default Product
 
 
