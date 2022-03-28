@@ -13,8 +13,9 @@ export const Product=({sellerId,search})=> {
         useEffect(async ()=>{
          const products = await getUserProducts(sellerId);
           setProducts(products)
+          console.log("products for id",sellerId,"are:",products)
 
-                 setLoading(false)
+                 if(products[0]){setLoading(false)}
 
 
           return products

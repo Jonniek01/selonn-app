@@ -15,7 +15,7 @@ function SellerProducts({sellerId,search}) {
          const products = await getUserProducts(sellerId);
           setProducts(products)
 
-                 setLoading(false)
+                if(products) {setLoading(false)}
 
 
           return products

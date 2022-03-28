@@ -8,7 +8,12 @@ import axios from 'axios'
 
 /*eslint-disable */
 
-function CreateAccount() {
+export function CreateAccount() {
+
+  let [closed,setClosed]=useState(false)
+  let [err,setErr]=useState('')
+
+
   let[seller,setSeller]=useState(false)
   const[clat,setClat]=useState('');
   const[clong,setClong]=useState('');
@@ -21,7 +26,16 @@ function CreateAccount() {
     //submit data 
     axios.post(`${SERVER_URL}/users`,data).then(res=>{
       console.log("Finished creating user");
-    }).catch(err=>console.log(err))
+      setClosed(true)
+    }).catch(err=>setErr(err))
+
+    console.log("Error here:",err)
+
+
+
+  
+  
+
 
   }
 
@@ -37,6 +51,9 @@ function CreateAccount() {
     setSeller(seller);
     seller=!seller
   }
+
+  if(closed===false){
+
 
 
   return (
@@ -138,13 +155,13 @@ function CreateAccount() {
 
           <Form.Group className="mb-3 " >
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" placeholder="Password" />
+          <Form.Control type="password" name="password" placeholder="Password" required/>
           </Form.Group>
 
           <Form.Group className="mb-3 " >
 
           <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control type="password" placeholder="Password" required/>
           </Form.Group>
           </div>
 
@@ -174,7 +191,35 @@ function CreateAccount() {
 
     </div>
 
+          
   )
 }
 
-export default CreateAccount
+else{
+  return(<div className='closed'>
+
+    <h1>Selonn</h1>
+    <div className='inner-container'>
+    <h3>Account created succesfully</h3>
+    <p>Click log in to continue</p>
+    <Link  className='log' to="/">Log in </Link>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>)
+}
+
+}
+
+

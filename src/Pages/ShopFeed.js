@@ -17,9 +17,21 @@ function ShopFeed({clat,clong}) {
   const [sellers,setSellers]=useState([]);
   const [loading, setLoading] = useState(true);
   const [search,setSearch]=useState('')
- function handleChange(e){
-    setSearch(e.target.value)
+
+
+
+ function handleSearch(e){
+  setSearch(e.target.value)
+
+  if (e.key == 'Enter'||e.keyCode==13) {
+    console.log("search:",search)
+
+
+
+}
   }
+
+
 useEffect(async ()=>{
   const sellers = await getUsers();
   setSellers(sellers)
@@ -27,9 +39,6 @@ useEffect(async ()=>{
 },[])
 
 function distance(lat1, lon1, lat2, lon2) {
-  // console.log(lat1,lon1,lat2,lon2)
-  // console.log('curr long:'+clong+" curr lat: "+clat)
-  // console.log("lat 1"+lat1+"Longitude 1"+lon1)
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
   var dLon = deg2rad(lon2-lon1); 
@@ -84,7 +93,7 @@ const FeedCard=sellers.map((seller)=>{
       <div className='search-container'>
       <div className='search'>
       <FontAwesomeIcon className='search-icon'  icon={faSearch}  />
-      <input className='search-input' onChange={handleChange} placeholder='Search...' type="text"></input>
+      <input className='search-input' onKeyUp={handleSearch} placeholder='Search...' type="text"></input>
 
         
       </div>
