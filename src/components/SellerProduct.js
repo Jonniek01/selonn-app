@@ -1,71 +1,79 @@
 import React from 'react'
-import  { getProducts }  from '../data/Products'
+import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import '../sass/MyProfileSeller.scss'
 
-  // const [product,setProducts]=useState(Products)
-  // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
-  // }
-
-function SellerProduct() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  let user = JSON.parse(localStorage.getItem('_user'));
-
-useEffect(async ()=>{
-  const products = await getProducts();
-  setProducts(products)
-  setLoading(false)
-},[])
-
-function setId(){
- const id=user.id;
- return id
-}
-
-const Productz= products.map(product=>(
-
-  <div key={product.id}>
-      <div className='product-card-seller'>
-    <div className='name-image'>
-        <div className='product-name'>{product.name}</div>
-        <div className='product-image'>Image</div>
-    </div>
-    <div className='price-available'>
-        <div className='price'><p>Ksh. {product.price}</p></div>
-        <span>
-        <button className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</button>
-        <Button variant="primary" >
-    Edit Product
-  </Button>
+import '../sass/SellerProfileView.scss'
 
 
+function SellerProducts({sellerId,search}) {
+          const [loading, setLoading] = useState(true);
+          const [productz,setProducts]=useState([])
 
-        </span>
-        
-    </div>
-</div>
-  </div>
+        useEffect(async ()=>{
+         const products = await getUserProducts(sellerId);
+          setProducts(products)
+
+                if(products) {setLoading(false)}
 
 
-))
+          return products
+          
+          
+        },[])
+
+        function mappedProducts(){
+          return productz.map(
+          (product)=>{
+            return(
+
+              <div  className='product-card' key={product.id}>
+              <div className='name-image'>
+                  <div className='product-name'>{product.productName}</div>
+                  <div className='product-image'>Image</div>
+              </div>
+              <div className='price-available'>
+                  <div className='price'><p>Ksh: {product.price}</p></div>
+              </div>
+          </div>
+      
+
+      )
+    }
+
+        )
+  }
 
 
 
-        if(!loading){
-          return(
-            <Productz/>
-          )
+
+
+        if(loading===true){
+
+          return(<div>Loading</div>)
+
 
         }
-        else return(
-          <div><h4>Loading....</h4></div>
-        )
+
+        else{
+
+
+
+
+
+  return (
+    <div className='seller-product-cards'>
+          {mappedProducts()}
+
+
+    </div>
+  )}
 
 }
 
-export default SellerProduct
+
+export default SellerProducts
+
 
 

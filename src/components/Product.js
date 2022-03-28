@@ -1,43 +1,66 @@
 import React from 'react'
-import { getProducts}   from '../data/Products'
+import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+let id=""
 
-  // const [product,setProducts]=useState(Products)
-  // const productCard=Products.filter(product=>product.ProductName.includes(product)).map(()=>{
-  // }
-
-function Product(userId,search) {
-          const [products, setProducts] = useState([]);
+export const Product=({sellerId,search})=> {
           const [loading, setLoading] = useState(true);
+          const [productz,setProducts]=useState([])
+
+          // console.log("seller id :",sellerId)
         useEffect(async ()=>{
-          const products = await getProducts();
+         const products = await getUserProducts(sellerId);
           setProducts(products)
-          // setLoading(false)
+          console.log("products for id",sellerId,"are:",products)
+
+                 if(products[0]){setLoading(false)}
+
+
+          return products
+          
+          
         },[])
 
-        function setId(){
-         const id=userId;
-         return id
+
+
+
+
+        if(loading===true){
+
+          return(<div>Loading</div>)
+
+
         }
 
+        else{
+
+
+
+
+
   return (
-    <div key={loading?'':products[0].id} className='product-card'>
+    <div  className='product-card'>
         <div className='name-image'>
-            <div className='product-name'>{loading?'loading...':products[0].name}</div>
+            <div className='product-name'>{productz[0].productName}</div>
             <div className='product-image'>Image</div>
         </div>
         <div className='price-available'>
-            <div className='price'><p>{loading?'loading':products[0].price}</p></div>
+            <div className='price'><p>Ksh. {productz[0].price}</p></div>
             <Link  className='' to="/seller">
 
-            <button  className='enquire'>Enquire</button>
+            <button onClick={()=>{id=productz[0].userId}}  className='enquire'>Enquire</button>
             </Link>
         </div>
     </div>
   )}
 
-export default Product
+}
+
+export const sId=()=> {
+  return id
+}
+
 
 

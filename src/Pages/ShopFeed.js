@@ -1,13 +1,14 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import { getUser, getUsers }  from '../data/Users'
-import Product from '../components/Product'
+import {Product,sId} from '../components/Product'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
 
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import '../sass/shopFeed.scss'
+
 import { useState, useEffect } from 'react'
 
 
@@ -16,9 +17,21 @@ function ShopFeed({clat,clong}) {
   const [sellers,setSellers]=useState([]);
   const [loading, setLoading] = useState(true);
   const [search,setSearch]=useState('')
- function handleChange(e){
-    setSearch(e.target.value)
+
+
+
+ function handleSearch(e){
+  setSearch(e.target.value)
+
+  if (e.key == 'Enter'||e.keyCode==13) {
+    console.log("search:",search)
+
+
+
+}
   }
+
+
 useEffect(async ()=>{
   const sellers = await getUsers();
   setSellers(sellers)
@@ -26,9 +39,6 @@ useEffect(async ()=>{
 },[])
 
 function distance(lat1, lon1, lat2, lon2) {
-  // console.log(lat1,lon1,lat2,lon2)
-  // console.log('curr long:'+clong+" curr lat: "+clat)
-  // console.log("lat 1"+lat1+"Longitude 1"+lon1)
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
   var dLon = deg2rad(lon2-lon1); 
@@ -40,7 +50,7 @@ function distance(lat1, lon1, lat2, lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
   d=parseFloat(d);
-  return d;
+  return d.toFixed(3);
 }
 
 function deg2rad(deg) {
@@ -60,16 +70,16 @@ const FeedCard=sellers.map((seller)=>{
  
 
 
- return (<div key={seller.id} className="feed-ca(a, b) => parseFloat(a.latitudeFixed) - parseFloat(b.latitudeFixed)rd">
+ return (<div key={seller.id} className="feed-card">
    <div className='feedcard-header'>
    <span className='brand'>{seller.username}</span>
-   <span className='distance'>distance: {distance(lat1,lon1,lat2,lon2)} km</span>
-   <span className='location-name'>Location Name<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
+   <span className='distance' style={{color:"green"}}> {distance(lat1,lon1,lat2,lon2)} km</span>
+   <span className='location-name'>{seller.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></span>
 
 
    </div>
 
-   <Product userId={seller.userId} search={search}/>
+   <Product sellerId={seller.id} search={search}/>
 
    
    </div>)
@@ -83,7 +93,7 @@ const FeedCard=sellers.map((seller)=>{
       <div className='search-container'>
       <div className='search'>
       <FontAwesomeIcon className='search-icon'  icon={faSearch}  />
-      <input className='search-input' onChange={handleChange} placeholder='Search...' type="text"></input>
+      <input className='search-input' onKeyUp={handleSearch} placeholder='Search...' type="text"></input>
 
         
       </div>

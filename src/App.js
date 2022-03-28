@@ -4,7 +4,7 @@ import axios from 'axios';
 import Page from './Page'
 import LogIn from './LogIn'
 import Logout from './Pages/Logout';
-import CreateAccount from './Pages/CreateAccount';
+import {CreateAccount} from './Pages/CreateAccount';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import { useState } from 'react';
 

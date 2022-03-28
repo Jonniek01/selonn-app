@@ -8,8 +8,9 @@ export default class CreateProductForm extends Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.responseRef = React.createRef();
+    this.formRef = React.createRef();
     this.state={
-      user: JSON.parse(localStorage.getItem('_user'))[0],
+      user: JSON.parse(localStorage.getItem('_user')),
       message:""
       
     }
@@ -23,8 +24,7 @@ handleSubmit(event){
   let data = Object.fromEntries(fd.entries());
   axios.post(`/products`,data).then(({data})=>{
     if(data.status == true){
-      form.reset();
-
+      this.formRef.current.reset();
     }
   }).catch(err=>  console.log(err))
   console.log("created")

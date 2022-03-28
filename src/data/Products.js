@@ -5,8 +5,8 @@ export async function getProducts(){
    return data;
 }
 
-export async  function getUserProducts(userId) {
-   const {data} = await axios.get(`${SERVER_URL}/users/${userId}/products`);
+export async  function getUserProducts(sellerId) {
+   const {data} = await axios.get(`${SERVER_URL}/users/${sellerId}/products`);
    return data;
  }
 

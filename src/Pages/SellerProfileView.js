@@ -1,43 +1,44 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+
+
 import '../sass/MyProfileSeller.scss'
 import '../sass/SellerProfileView.scss'
+import SellerProducts from '../components/SellerProduct'
+import { getUser }  from '../data/Users'
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocation } from '@fortawesome/free-solid-svg-icons'
-import  { getProducts }  from '../data/Products'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import {sId} from '../components/Product'
 
 
 
-function sellerProfileView(sellerId) {
-  // const [products,setProducts]=useState(Products)
-  // const [user,setUser]=useState(User)
-  const User = JSON.parse(localStorage.getItem('_user'));
-  const userId=User.userId;
-  // const product=Products.filter(product=>product.userId===userId).map((product)=>{
-  //   return<div key={product.productId}>
-  //         <div className='product-card-seller'>
-  //       <div className='name-image'>
-  //           <div className='product-name'>{product.productName}</div>
-  //           <div className='product-image'>Image</div>
-  //       </div>
-  //       <div className='price-available'>
-  //           <div className='price'><p>{product.price} Ksh</p></div>
-  //           <span>
-  //           <p className='b-available' style={{color:product.available===true?"blue":"red"}}>{product.available===true?"Available":"Unavailable"}</p>
-  //           </span>
-            
-  //       </div>
-  //   </div>
 
-      
-      
-  //     </div>
-  // }
+function SellerProfileView() {
+  let id=sId()
+  const [seller, setSeller]=useState([]);
+  const [loading,setLoading]=useState(true)
+  useEffect(async ()=>{
+    const sellerget = await getUser(id);
+    console.log("id of seller being enquired:",id)
+    console.log("seller being enquired :",sellerget)
 
-  // )
+
+    setSeller(sellerget)
+
+    setLoading(false)
+  },[])
+
+
+  if(loading===true){
+    return(<h1>Loading seller profile....</h1>)
+  }
+  else{
+
+  
   return (
     <Container>
       <div className='seller-profile'>
@@ -49,22 +50,26 @@ function sellerProfileView(sellerId) {
     <div className='seller-profile-head'>
         <div className='profile-image'><p>Profile Image</p></div>
         <div className='contents'>
-          <div className='s-brand'><h1>Brand</h1></div>
-          <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>LocationName<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
-          <p className='description'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam elementum convallis sem, quis egestas ante lacinia sed. Nunc luctus dui in arcu semper, vel mattis libero varius. Donec at ligula massa. Praesent convallis et justo et fringilla
-</p>
+          <div className='s-brand'><h1>{seller.username}</h1></div>
+          <div className='s-distance-name'><div className='s-name'>{seller.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div><div className='s-distance'>30km</div></div>
+          <div className='description'>
+            <h5>Description</h5>
+            <p>{seller.description}</p>
+            
+</div>
             
         </div>
 
 
     </div>
-    <div className='seller-product-cards'>
-      {/* {product} */}
+    <div >
+      <SellerProducts sellerId={id}/>
     </div>
     </div>
 
 </Container>  )
+  }
+
 }
 
-export default sellerProfileView
+export default SellerProfileView

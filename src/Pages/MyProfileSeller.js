@@ -9,7 +9,6 @@ import UpdateProductForm from '../components/UpdateProductForm'
 import CreateProductForm from '../components/CreateProductForm'
 import SellerProduct from '../components/SellerProduct';
 import { Container, Modal, Button } from 'react-bootstrap'
-import axios from 'axios'
 
  function MyProfileSeller({clat,clong}) {
   const User = JSON.parse(sessionStorage.getItem('_user'));
@@ -30,11 +29,39 @@ import axios from 'axios'
     async function getData(){
         let userProducts =  await getUserProducts(User.id);
         setProducts(userProducts);
+        console.log("this are this seller's products",products)
         setLoading(false);
+
+        return products
+
     }
     getData();
 
   },[])
+
+  const profileProducts=products.map(
+    (product)=>{
+      return    <div key={product.id} className='profile-product'>
+      <div className='name-price'>
+          <div className='product-name'>{product.productName}</div>
+          <div className='price'><p>Ksh.{product.price}</p></div>
+
+      </div>
+      <div className='image-description'>
+      <div className='product-image'>Image</div>
+      <div>{product.description}</div>
+    
+
+
+      </div>
+      <div className='edit-product'>
+
+          <button  className='enquire'onClick={handleShowpedit}>Edit Product</button>
+      </div>
+  </div>
+
+    }
+  )
 
   return (
     <Container>
@@ -42,9 +69,9 @@ import axios from 'axios'
     <div className='seller-profile-head'>
         <div className='profile-image'><p>Profile Image</p></div>
         <div className='contents'>
-          <div className='s-brand'><h1>Brand</h1></div>
-          <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>LocationName<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
-          <span>User Id:{User.id}</span><span>lat:{clat}</span><span>long:{clong}</span>
+          <div className='s-brand'><h1>{User.username}</h1></div>
+          <div className='s-distance-name'><div className='s-distance'>30km</div><div className='s-name'>{User.location}<FontAwesomeIcon className='search-icon'  icon={faLocation}  /></div></div>
+          <span>User Id:{User.id}</span><span>Current Latitude:{clat}</span><span>Current Longitude:{clong}</span>
 
           <p className='description'>
               {User.description}
@@ -66,7 +93,7 @@ import axios from 'axios'
 </span>
     </div>
     <div className='seller-product-cards'>
-      {/* {SellerProduct(loading,products)} */}
+      {loading?"loading products...":profileProducts}
     </div>
     </div>
 
