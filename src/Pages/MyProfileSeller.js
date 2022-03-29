@@ -19,12 +19,15 @@ import { Container, Modal, Button } from 'react-bootstrap'
   const handleShowp = () => setShowp(true);
   const [showpedit, setShowpedit] = useState(false);
   const handleClosepedit = () => setShowpedit(false);
-  const handleShowpedit = () => setShowpedit(true);
-
   const [loading, setLoading] = useState(true);
   const [seller, setSeller] = useState(sessionStorage.getItem('_user'))
   const [products,setProducts]=useState([]);
+  const [editedProduct, setEditedProduct] = useState('')
+  const handleShowpedit = (product) => {
 
+    setEditedProduct(product);
+    setShowpedit(true);
+  }
   useEffect(()=>{
     async function getData(){
         let userProducts =  await getUserProducts(User.id);
@@ -56,7 +59,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
       </div>
       <div className='edit-product'>
 
-          <button  className='enquire'onClick={handleShowpedit}>Edit Product</button>
+          <button  className='enquire' onClick={()=>handleShowpedit(product)}>Edit Product</button>
       </div>
   </div>
 
@@ -136,7 +139,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
           <Modal.Title>Edit Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <UpdateProductForm/>
+          <UpdateProductForm product={editedProduct} onHide={handleClosepedit}/>
 
         </Modal.Body>
       </Modal>

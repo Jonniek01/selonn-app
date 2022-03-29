@@ -3,7 +3,7 @@ import { Button ,Form} from 'react-bootstrap'
 import { useState } from 'react';
 import axios from '../axios';
 
-/*eslint-disable */
+/*eslint-disable */ 
 function UpdateForm({clat,clong, user}) {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);

@@ -52,10 +52,11 @@ const itemName="Product";
         const productRef = doc(db, collectionName, id);
 
         await updateDoc(productRef,data);
-
+         data = await getProduct(id);
         return {
             success:1,
-            message:`${itemName} information updated successfully`
+            message:`${itemName} information updated successfully`,
+            data
         }
     }
     /**Delete */

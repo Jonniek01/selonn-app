@@ -26,8 +26,6 @@ function ShopFeed({clat,clong}) {
   if (e.key == 'Enter'||e.keyCode==13) {
     console.log("search:",search)
 
-
-
 }
   }
 
