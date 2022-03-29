@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from '../axios';
 
 /*eslint-disable */ 
-function UpdateForm({clat,clong, user}) {
+function UpdateForm({clat,clong, user, onHide}) {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(user.email);
@@ -27,6 +27,8 @@ function UpdateForm({clat,clong, user}) {
         //update login data
         sessionStorage.setItem('_user', JSON.stringify(data.data))
         localStorage.setItem('_user', JSON.stringify(data.data))
+        //hide create account modal
+        setTimeout(()=>onHide(), 1500)
       }
     }).catch(err=>console.log(err))
     

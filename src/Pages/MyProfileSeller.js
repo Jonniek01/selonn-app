@@ -115,7 +115,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
         </Modal.Header>
         <Modal.Body>
 
-          <UpdateSellerForm clat={clat} clong={clong} user={User}/>
+          <UpdateSellerForm clat={clat} clong={clong} user={User} onHide={()=>setShow(false)}/>
 
         </Modal.Body>
       </Modal>
@@ -127,7 +127,7 @@ import { Container, Modal, Button } from 'react-bootstrap'
           <Modal.Title>Create Product</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <CreateProductForm/>
+          <CreateProductForm onHide={handleClosep}/>
 
         </Modal.Body>
       </Modal>
