@@ -3,25 +3,50 @@ import { getUserProducts}   from '../data/Products'
 import '../sass/Product.scss'
 import { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
+
 let id=""
 
 export const Product=({sellerId,search})=> {
+  console.log("your search:",search)
+
+
           const [loading, setLoading] = useState(true);
           const [productz,setProducts]=useState([])
+          const [found,setFound]=useState(false)
 
-          // console.log("seller id :",sellerId)
+
         useEffect(async ()=>{
          const products = await getUserProducts(sellerId);
           setProducts(products)
-          console.log("products for id",sellerId,"are:",products)
 
-                 if(products[0]){setLoading(false)}
+                 if(products){setLoading(false)}
 
 
           return products
           
           
         },[])
+        const SearchedCard=()=>{
+          return productz.filter(product=>product.productName.toLowerCase().includes(search.toLowerCase())).map(
+            (product)=>{
+              return    <div  className='product-card'>
+              <div className='name-image'>
+                  <div className='product-name'>{product.productName}</div>
+                  <div className='product-image'>Image</div>
+              </div>
+              <div className='price-available'>
+                  <div className='price'><p>Ksh. {product.price}</p></div>
+                  <Link  className='' to="/seller">
+      
+                  <button onClick={()=>{id=product.userId}}  className='enquire'>Enquire</button>
+                  </Link>
+              </div>
+          </div>
+      
+            }
+          )
+
+        }
 
 
 
@@ -35,6 +60,12 @@ export const Product=({sellerId,search})=> {
         }
 
         else{
+          if(productz[0]!=undefined){
+            
+          if(search===''){
+            
+
+
 
 
 
@@ -55,6 +86,26 @@ export const Product=({sellerId,search})=> {
         </div>
     </div>
   )}
+  else{
+    if(SearchedCard===null){
+      return(<div>{search} not found</div>)
+    }
+    else{
+
+    return(<div>
+            <SearchedCard/>
+
+
+    </div>
+    )
+  }
+
+  }
+}
+else{
+  return<div>No products</div>
+}
+}
 
 }
 

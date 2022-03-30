@@ -2,7 +2,7 @@ import './Page.scss';
 import {Container} from 'react-bootstrap'
 import NavigationBar from './components/NavigationBar';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import ShopFeed from './Pages/ShopFeed';
+import {ShopFeed} from './Pages/ShopFeed';
 import About from './Pages/About';
 import Logout from './Pages/Logout';
 import NotFound from './Pages/NotFound';

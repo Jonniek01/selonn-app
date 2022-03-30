@@ -12,19 +12,31 @@ import '../sass/shopFeed.scss'
 import { useState, useEffect } from 'react'
 
 
-function ShopFeed({clat,clong}) {
+export function ShopFeed({clat,clong}) {
 
   const [sellers,setSellers]=useState([]);
   const [loading, setLoading] = useState(true);
   const [search,setSearch]=useState('')
+  const [searchs,setSearchS]=useState('')
+
+
 
 
 
  function handleSearch(e){
   setSearch(e.target.value)
 
-  if (e.key == 'Enter'||e.keyCode==13) {
-    console.log("search:",search)
+
+  if (e.key === 'Enter'||e.keyCode===13) {
+
+  setSearchS(search)
+  return searchs;
+
+
+  
+
+
+
 
 
 
@@ -79,7 +91,7 @@ const FeedCard=sellers.map((seller)=>{
 
    </div>
 
-   <Product sellerId={seller.id} search={search}/>
+   <Product sellerId={seller.id} search={searchs} />
 
    
    </div>)
@@ -123,4 +135,3 @@ const FeedCard=sellers.map((seller)=>{
   )
 }
 
-export default ShopFeed

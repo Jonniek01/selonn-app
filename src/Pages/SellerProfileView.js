@@ -57,11 +57,23 @@ function SellerProfileView() {
             <p>{seller.description}</p>
             
 </div>
+<div className='go'>
+  <a href={`https://www.google.com/maps/@${seller.fixedLatitude},${seller.fixedLongitude},15z`} target="_blank">Go to location</a>
+
+</div>
             
         </div>
 
 
     </div>
+    <div className='seller-contact'>
+      <div>
+        <a href={`tel:${seller.phone}`}>Call:{seller.phone}</a>
+      </div>
+      <div>
+        <a href={`https://wa.me/${seller.phone}/?text=Hello`}>WhatsApp</a>
+        </div>
+      </div>
     <div >
       <SellerProducts sellerId={id}/>
     </div>
