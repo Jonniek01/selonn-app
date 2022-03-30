@@ -12,7 +12,6 @@ export default class CreateProductForm extends Component {
     this.state={
       user: JSON.parse(localStorage.getItem('_user')),
       message:""
-      
     }
   }
 
@@ -24,12 +23,11 @@ handleSubmit(event){
   let data = Object.fromEntries(fd.entries());
   axios.post(`/products`,data).then(({data})=>{
     if(data.status == true){
-      this.formRef.current.reset();
+      //hide after 1.5 s
+      setTimeout(()=>this.props.onHide(), 1500)
     }
   }).catch(err=>  console.log(err))
-  console.log("created")
-  console.log(data)
-
+  
   this.state.message=data.productName+" created succesfully"
   this.setState(message=>message)
 

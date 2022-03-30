@@ -38,8 +38,6 @@ export function ShopFeed({clat,clong}) {
 
 
 
-
-
 }
   }
 

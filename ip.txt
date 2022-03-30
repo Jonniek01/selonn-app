@@ -1,0 +1,27 @@
+IP packets carry data during transmission and have a header that contains
+information helping them to find their way and to reassemble after transmission.
+diagram: <<find attached>>
+The identification tag helps reassemble the packet from several eventual
+fragments. Data sent over a network is broken down into small sections
+enveloped in these packets. IP networks, such as the internet, usually are not
+secure. Packets can be lost, delayed, and arrive in the wrong order. Once they
+arrive at the destination, the identification tag helps to identify the packet and to
+reassemble the data back to its original form.
+The fragmented flag states whether the packet can be fragmented or not.
+The fragment offset is a field to identify which fragment this packet is attached to.
+Time to Live (TTL) is a number that indicates how many hops (router passes) the
+packet can make before it dies. Usually, at each router, a packet is analyzed, and
+based on the information present at that router on other neighboring routers, a
+choice is made as to which route is best. The packet is then forwarded to that
+next router. In this configuration, a packet may well go round. There is also
+flooding as another method, which implies sending a copy of the packet to each
+neighboring router; then, only the target machine consumes the packet. Other
+packets will keep roaming. TTL is a number, typically 255, which decreases each
+time a packet passes a router. This way, redundant packets will ultimately die
+once the TTL reaches zero.
+The header checksum is a number used for error detection and correction during
+packet transmission. The data in the packet is fed into a mathematical algorithm.
+The resulting sum travels with the data in the packet. Upon reception, this sum is
+calculated again using the same algorithm. If it is the same as the original sum,
+the data is good. Otherwise, it is considered corrupt, and the packet discarded.
+The payload is the actual data being carried.
